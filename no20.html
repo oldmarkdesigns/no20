@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NO20 — Stockholm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:       #181817;
+      --charcoal:   #222220;
+      --sage:       #697A6B;
+      --sage-mid:   #8B9C8D;
+      --sage-pale:  #B6C5B8;
+      --cream:      #F0E9DF;
+      --beige:      #DDD3C2;
+      --blush:      #C4ACA3;
+      --warm-white: #F8F4EE;
+      --dim:        #9A9890;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img { display: block; }
+    a { color: inherit; }
+
+    /* ══════════════════════════════════════ NAV */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      padding: 28px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: padding .45s ease, background .45s ease, border-color .45s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: var(--warm-white);
+      padding: 16px 56px;
+      border-color: var(--beige);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant', serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--cream);
+      transition: color .45s;
+    }
+
+    nav.scrolled .nav-logo { color: var(--dark); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--cream);
+      opacity: .6;
+      transition: opacity .2s, color .45s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+    nav.scrolled .nav-links a { color: var(--dark); }
+
+    /* Language toggle */
+    .lang-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid rgba(255,255,255,.28);
+      color: var(--cream);
+      cursor: pointer;
+      padding: 6px 14px;
+      transition: border-color .2s, color .45s, background .2s;
+    }
+
+    .lang-btn:hover { border-color: rgba(255,255,255,.75); }
+
+    nav.scrolled .lang-btn {
+      color: var(--dark);
+      border-color: rgba(0,0,0,.22);
+    }
+
+    nav.scrolled .lang-btn:hover { border-color: var(--dark); }
+
+    /* ══════════════════════════════════════ HERO */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 56px 72px;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 50% at 78% 32%, rgba(105,122,107,.08) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 55% at 12% 72%, rgba(105,122,107,.05) 0%, transparent 60%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage-mid);
+      margin-bottom: 20px;
+      opacity: .85;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(108px, 21vw, 320px);
+      font-weight: 300;
+      line-height: .86;
+      letter-spacing: -.025em;
+      color: var(--cream);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sage-mid);
+    }
+
+    .hero-sub {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(17px, 1.8vw, 23px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--dim);
+      letter-spacing: .02em;
+    }
+
+    .hero-rule {
+      flex: 0 0 60px;
+      height: 1px;
+      background: var(--sage);
+      opacity: .4;
+    }
+
+    .hero-loc {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 52px;
+      right: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--dim);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-bar {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--sage-mid), transparent);
+      animation: breathe 2.4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: .2; }
+      50%       { opacity: .85; }
+    }
+
+    /* ══════════════════════════════════════ SHARED */
+    .tag {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* ══════════════════════════════════════ STORY */
+    #story {
+      background: var(--cream);
+      color: var(--dark);
+      padding: 136px 56px;
+    }
+
+    .story-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .story-left .tag { color: var(--sage); }
+
+    .story-left h2 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(44px, 5.5vw, 74px);
+      font-weight: 400;
+      line-height: 1.07;
+      letter-spacing: -.01em;
+      margin-bottom: 44px;
+    }
+
+    .story-left h2 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .story-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(155deg, var(--beige) 0%, var(--blush) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 22px 24px;
+      overflow: hidden;
+    }
+
+    .photo-label {
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .story-right { padding-top: 4px; }
+
+    .story-right p {
+      font-size: 15.5px;
+      line-height: 1.88;
+      color: #343432;
+      margin-bottom: 22px;
+    }
+
+    .pull-quote {
+      margin: 48px 0;
+      padding: 28px 0 28px 36px;
+      border-left: 2px solid var(--sage);
+    }
+
+    .pull-quote p {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(20px, 2.2vw, 27px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.48;
+      color: var(--sage);
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════ SPECS */
+    #specs {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 136px 56px;
+    }
+
+    .specs-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .specs-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 88px;
+      align-items: end;
+    }
+
+    .specs-top .tag { color: var(--sage-mid); }
+
+    .specs-top h2 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(38px, 4.8vw, 66px);
+      font-weight: 300;
+      line-height: 1.07;
+      letter-spacing: -.01em;
+    }
+
+    .specs-top p {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--dim);
+      max-width: 420px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .spec-item {
+      padding: 40px 28px 40px 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .spec-tag {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sage-mid);
+      margin-bottom: 18px;
+    }
+
+    .spec-val {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--cream);
+    }
+
+    .spec-val.text {
+      font-size: clamp(20px, 2vw, 28px);
+    }
+
+    .spec-unit {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--dim);
+      margin-left: 3px;
+    }
+
+    .spec-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--dim);
+      letter-spacing: .02em;
+    }
+
+    /* ══════════════════════════════════════ GALLERY */
+    #gallery {
+      background: var(--warm-white);
+      color: var(--dark);
+      padding: 136px 56px;
+    }
+
+    .gallery-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+
+    .gallery-header .tag { color: var(--sage); }
+
+    .gallery-header h2 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+    }
+
+    .gallery-header h2 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .gallery-caption {
+      font-family: 'Cormorant', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--dim);
+      padding-bottom: 4px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 420px 340px 300px;
+      gap: 10px;
+    }
+
+    .g-item {
+      overflow: hidden;
+      background: var(--beige);
+    }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .75s cubic-bezier(.25,.46,.45,.94);
+    }
+
+    .g-item:hover img { transform: scale(1.05); }
+
+    .g-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+    .g-item:nth-child(2) { grid-column: 3;     grid-row: 1; }
+    .g-item:nth-child(3) { grid-column: 1;     grid-row: 2; }
+    .g-item:nth-child(4) { grid-column: 2 / 4; grid-row: 2; }
+    .g-item:nth-child(5) { grid-column: 1 / 4; grid-row: 3; }
+
+    /* ══════════════════════════════════════ CONTACT */
+    #contact {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 136px 56px;
+    }
+
+    .contact-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: end;
+    }
+
+    .contact-left .tag { color: rgba(255,255,255,.5); }
+
+    .contact-left h2 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(44px, 5.5vw, 76px);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -.01em;
+      margin-bottom: 28px;
+    }
+
+    .contact-left h2 em {
+      font-style: italic;
+      color: rgba(255,255,255,.62);
+    }
+
+    .contact-left > p {
+      font-size: 15px;
+      line-height: 1.82;
+      color: rgba(255,255,255,.75);
+      max-width: 440px;
+      margin-bottom: 52px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 15px 38px;
+      border: 1px solid rgba(255,255,255,.45);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--cream);
+      transition: background .3s ease, border-color .3s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.8);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .c-row {
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,.17);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .c-row:last-child { border-bottom: 1px solid rgba(255,255,255,.17); }
+
+    .c-label {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.48);
+    }
+
+    .c-val {
+      font-family: 'Cormorant', serif;
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .c-val a {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity .2s;
+    }
+
+    .c-val a:hover { opacity: .65; }
+
+    /* ══════════════════════════════════════ FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 28px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    .f-logo {
+      font-family: 'Cormorant', serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: .22em;
+      color: var(--cream);
+    }
+
+    footer p {
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: .04em;
+    }
+
+    /* ══════════════════════════════════════ REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ══════════════════════════════════════ RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 20px 28px; }
+      nav.scrolled { padding: 14px 28px; }
+      .nav-links { display: none; }
+
+      #hero { padding: 0 28px 60px; }
+      .scroll-hint { right: 28px; }
+
+      #story, #specs, #gallery, #contact { padding: 88px 28px; }
+
+      .story-inner { grid-template-columns: 1fr; gap: 52px; }
+      .specs-top   { grid-template-columns: 1fr; gap: 32px; }
+      .specs-grid  { grid-template-columns: repeat(2, 1fr); }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 280px 240px 240px 200px;
+      }
+      .g-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+      .g-item:nth-child(2) { grid-column: 1;     grid-row: 2; }
+      .g-item:nth-child(3) { grid-column: 2;     grid-row: 2; }
+      .g-item:nth-child(4) { grid-column: 1 / 3; grid-row: 3; }
+      .g-item:nth-child(5) { grid-column: 1 / 3; grid-row: 4; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+      footer { padding: 24px 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-rule { display: none; }
+      .hero-sub  { flex-wrap: wrap; gap: 10px; }
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">NO20</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#gallery" data-sv="Galleri"         data-en="Gallery">Galleri</a></li>
+      <li><a href="#specs"   data-sv="Specifikationer" data-en="Specifications">Specifikationer</a></li>
+      <li><a href="#story"   data-sv="Berättelse"      data-en="Story">Berättelse</a></li>
+      <li><a href="#contact" data-sv="Kontakt"         data-en="Contact">Kontakt</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow"
+       data-sv="Stockholm, Sverige &mdash; Est. 2024"
+       data-en="Stockholm, Sweden &mdash; Est. 2024">Stockholm, Sverige &mdash; Est. 2024</p>
+    <h1 class="hero-title">NO<em>20</em></h1>
+    <div class="hero-sub">
+      <span class="hero-tagline"
+            data-sv="Ett hem på vattnet."
+            data-en="A home that floats.">Ett hem på vattnet.</span>
+      <span class="hero-rule"></span>
+      <span class="hero-loc"
+            data-sv="Stockholms skärgård"
+            data-en="Stockholm Archipelago">Stockholms skärgård</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-bar"></div>
+    <span data-sv="Scrolla" data-en="Scroll">Scrolla</span>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<!-- Replace img src values with actual NO20 photographs -->
+<section id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header reveal">
+      <div>
+        <span class="tag"
+              data-sv="Galleri"
+              data-en="Gallery">Galleri</span>
+        <h2 data-sv="Livet ombord på<br><em>NO20.</em>"
+            data-en="Life aboard<br><em>NO20.</em>">Livet ombord på<br><em>NO20.</em></h2>
+      </div>
+      <span class="gallery-caption"
+            data-sv="Utvalda fotografier"
+            data-en="Selected photographs">Utvalda fotografier</span>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item reveal">
+        <img src="https://picsum.photos/seed/no20-ext/900/600" alt="NO20 på vattnet">
+      </div>
+      <div class="g-item reveal" style="transition-delay:.08s">
+        <img src="https://picsum.photos/seed/no20-cabin/500/700" alt="Hyttinteriör">
+      </div>
+      <div class="g-item reveal" style="transition-delay:.08s">
+        <img src="https://picsum.photos/seed/no20-deck/500/560" alt="Akterdäck">
+      </div>
+      <div class="g-item reveal" style="transition-delay:.14s">
+        <img src="https://picsum.photos/seed/no20-lounge/820/480" alt="Salongen">
+      </div>
+      <div class="g-item reveal" style="transition-delay:.2s">
+        <img src="https://picsum.photos/seed/no20-arch/1100/380" alt="Stockholms skärgård">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs">
+  <div class="specs-inner">
+    <div class="specs-top reveal">
+      <div>
+        <span class="tag"
+              data-sv="Specifikationer"
+              data-en="Specifications">Specifikationer</span>
+        <h2 data-sv="Siffrorna bakom<br>fartyget."
+            data-en="The numbers<br>behind the craft.">Siffrorna bakom<br>fartyget.</h2>
+      </div>
+      <p data-sv="NO20 är en specialbyggd stålhusbåt, utformad för komfort, stabilitet och åretruntboende i den svenska skärgården. Alla mått är nominella och föremål för slutlig besiktning."
+         data-en="NO20 is a custom-built steel houseboat, designed for comfort, stability, and year-round habitation in the Swedish archipelago. All figures are nominal and subject to final survey.">NO20 är en specialbyggd stålhusbåt, utformad för komfort, stabilitet och åretruntboende i den svenska skärgården. Alla mått är nominella och föremål för slutlig besiktning.</p>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-item reveal">
+        <div class="spec-tag" data-sv="Total längd" data-en="Length Overall">Total längd</div>
+        <div class="spec-val">18<span class="spec-unit">m</span></div>
+        <div class="spec-note" data-sv="59 fot" data-en="59 feet">59 fot</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.08s">
+        <div class="spec-tag" data-sv="Bredd" data-en="Beam">Bredd</div>
+        <div class="spec-val">6.2<span class="spec-unit">m</span></div>
+        <div class="spec-note" data-sv="20 fot 4 tum" data-en="20 feet 4 inches">20 fot 4 tum</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.16s">
+        <div class="spec-tag" data-sv="Djupgående" data-en="Draft">Djupgående</div>
+        <div class="spec-val">0.9<span class="spec-unit">m</span></div>
+        <div class="spec-note" data-sv="Grundvattenkapabel" data-en="Shallow-water capable">Grundvattenkapabel</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.24s">
+        <div class="spec-tag" data-sv="Deplacement" data-en="Displacement">Deplacement</div>
+        <div class="spec-val">32<span class="spec-unit">t</span></div>
+        <div class="spec-note" data-sv="Fullastad" data-en="Fully laden">Fullastad</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.08s">
+        <div class="spec-tag" data-sv="Gästkapacitet" data-en="Guest Capacity">Gästkapacitet</div>
+        <div class="spec-val">8</div>
+        <div class="spec-note" data-sv="Övernattande gäster" data-en="Overnight guests">Övernattande gäster</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.16s">
+        <div class="spec-tag" data-sv="Hytter" data-en="Cabins">Hytter</div>
+        <div class="spec-val">4</div>
+        <div class="spec-note" data-sv="Alla med eget badrum" data-en="All ensuite">Alla med eget badrum</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.24s">
+        <div class="spec-tag" data-sv="Skrovmaterial" data-en="Hull Material">Skrovmaterial</div>
+        <div class="spec-val text" data-sv="Stål" data-en="Steel">Stål</div>
+        <div class="spec-note" data-sv="Marinlackerat" data-en="Marine-grade painted">Marinlackerat</div>
+      </div>
+      <div class="spec-item reveal" style="transition-delay:.32s">
+        <div class="spec-tag" data-sv="Byggår" data-en="Year Built">Byggår</div>
+        <div class="spec-val">2024</div>
+        <div class="spec-note" data-sv="Stockholm, Sverige" data-en="Stockholm, Sweden">Stockholm, Sverige</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-inner">
+    <div class="story-left reveal">
+      <span class="tag"
+            data-sv="Fartyget"
+            data-en="The Vessel">Fartyget</span>
+      <h2 data-sv="Byggd med<br><em>omsorg,</em><br>förtöjd med<br>intention."
+          data-en="Built with<br><em>intention,</em><br>moored with<br>care.">Byggd med<br><em>omsorg,</em><br>förtöjd med<br>intention.</h2>
+      <!-- Replace this div with an <img> of the boat -->
+      <div class="story-photo">
+        <span class="photo-label"
+              data-sv="↑ Ersätt med fotografi"
+              data-en="↑ Replace with photograph">↑ Ersätt med fotografi</span>
+      </div>
+    </div>
+    <div class="story-right reveal" style="transition-delay:.15s">
+      <p data-sv="NO20 är inte skapad för att följa det förväntade. Hon är tänkt som något sällsyntare — ett flytande hem som förenar den nordiska hantverkstraditionens stilla klarhet med den ovanliga friheten att leva på vatten. Varje trätapp, varje målad vägg, varje genomtänkt vrå är resultatet av år av tankar kring vad det verkligen innebär att leva väl."
+         data-en="NO20 was not born from convention. She was conceived as something rarer — a floating home that unites the quiet clarity of Nordic craftsmanship with the uncommon freedom of life upon water. Every timber joint, every painted wall, every considered corner reflects years of thinking about what it truly means to live well.">NO20 är inte skapad för att följa det förväntade. Hon är tänkt som något sällsyntare — ett flytande hem som förenar den nordiska hantverkstraditionens stilla klarhet med den ovanliga friheten att leva på vatten. Varje trätapp, varje målad vägg, varje genomtänkt vrå är resultatet av år av tankar kring vad det verkligen innebär att leva väl.</p>
+
+      <div class="pull-quote">
+        <p data-sv="&ldquo;Vi ville inte ha en båt. Vi ville ha ett ställe att andas — som råkade flyta.&rdquo;"
+           data-en="&ldquo;We didn&rsquo;t want a boat. We wanted a place to breathe — that simply happened to float.&rdquo;">&ldquo;Vi ville inte ha en båt. Vi ville ha ett ställe att andas — som råkade flyta.&rdquo;</p>
+      </div>
+
+      <p data-sv="Byggd för hand utanför Stockholm tog NO20 tre år från första skiss till första färd på vattnet. Skrovet är stål, ärligt och beständigt. Interiören är något helt annat — varmt trä, salviagröna väggar och blekt morgonljus som rör sig genom hyttfönster i långa, långsamma bågar under dagen."
+         data-en="Built by hand outside Stockholm, NO20 took three years from first pencil sketch to first voyage. The hull is steel, honest and permanent. The interior is something else entirely — warm timber, sage-green walls, and pale morning light that moves through porthole glass in long, slow arcs across the day.">Byggd för hand utanför Stockholm tog NO20 tre år från första skiss till första färd på vattnet. Skrovet är stål, ärligt och beständigt. Interiören är något helt annat — varmt trä, salviagröna väggar och blekt morgonljus som rör sig genom hyttfönster i långa, långsamma bågar under dagen.</p>
+
+      <p data-sv="Hon rymmer upp till åtta gäster i fyra privata hytter, varje rum utfört med samma omsorg som man finner på ett noggrant utformat hotell. Inget ombord är onödigt. Inget saknas. Kabyssen är generös, akterdecket brett och kvällarna på vattnet längre än man väntar sig."
+         data-en="She sleeps up to eight guests across four private cabins, each finished with the same consideration you would find in a carefully edited hotel. Nothing aboard is unnecessary. Nothing is missing. The galley is generous, the aft deck wide, and the evenings on the water are longer than you expect.">Hon rymmer upp till åtta gäster i fyra privata hytter, varje rum utfört med samma omsorg som man finner på ett noggrant utformat hotell. Inget ombord är onödigt. Inget saknas. Kabyssen är generös, akterdecket brett och kvällarna på vattnet längre än man väntar sig.</p>
+
+      <p data-sv="Idag är NO20 tillgänglig för privata vistelser, intima sammankomster och längre arrangemang för gäster som delar en uppskattning för det oskynsamma och välgjorda."
+         data-en="Today NO20 is available for private stays, intimate celebrations, and longer arrangements to guests who share an appreciation for the unhurried and the well-made.">Idag är NO20 tillgänglig för privata vistelser, intima sammankomster och längre arrangemang för gäster som delar en uppskattning för det oskynsamma och välgjorda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <span class="tag"
+            data-sv="Kontakta oss"
+            data-en="Get in touch">Kontakta oss</span>
+      <h2 data-sv="Välkommen<br><em>ombord.</em>"
+          data-en="Come<br><em>aboard.</em>">Välkommen<br><em>ombord.</em></h2>
+      <p data-sv="Oavsett om du söker en privat tillflyktsort, ett intimt firande eller ett längre arrangemang — NO20 är tillgänglig för gäster som värdesätter det genomtänkta och det oskynsamma. Vi välkomnar förfrågningar av alla slag."
+         data-en="Whether you are seeking a private escape, an intimate celebration, or a longer arrangement — NO20 is available for guests who value the considered and the unhurried. We welcome enquiries of all kinds.">Oavsett om du söker en privat tillflyktsort, ett intimt firande eller ett längre arrangemang — NO20 är tillgänglig för gäster som värdesätter det genomtänkta och det oskynsamma. Vi välkomnar förfrågningar av alla slag.</p>
+      <a href="mailto:hello@no20.se" class="btn"
+         data-sv="Skriv till oss"
+         data-en="Write to us">Skriv till oss</a>
+    </div>
+    <div class="contact-details reveal" style="transition-delay:.15s">
+      <div class="c-row">
+        <span class="c-label" data-sv="E-post" data-en="Email">E-post</span>
+        <span class="c-val"><a href="mailto:hello@no20.se">hello@no20.se</a></span>
+      </div>
+      <div class="c-row">
+        <span class="c-label" data-sv="Telefon" data-en="Phone">Telefon</span>
+        <span class="c-val"><a href="tel:+46701234567">+46 70 123 45 67</a></span>
+      </div>
+      <div class="c-row">
+        <span class="c-label" data-sv="Plats" data-en="Location">Plats</span>
+        <span class="c-val" data-sv="Stockholms skärgård, Sverige" data-en="Stockholm Archipelago, Sweden">Stockholms skärgård, Sverige</span>
+      </div>
+      <div class="c-row">
+        <span class="c-label">Instagram</span>
+        <span class="c-val"><a href="#">@no20.se</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-logo">NO20</span>
+  <p data-sv="&copy; 2024 NO20. Alla r&auml;ttigheter f&ouml;rbeh&aring;llna. Stockholm, Sverige."
+     data-en="&copy; 2024 NO20. All rights reserved. Stockholm, Sweden.">&copy; 2024 NO20. Alla r&auml;ttigheter f&ouml;rbeh&aring;llna. Stockholm, Sverige.</p>
+</footer>
+
+<script>
+  // ── Nav scroll state ──────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.82);
+  }, { passive: true });
+
+  // ── Scroll reveal ─────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Language toggle ───────────────────────────────────
+  let currentLang = 'sv';
+
+  function toggleLang() {
+    currentLang = currentLang === 'sv' ? 'en' : 'sv';
+    applyLang(currentLang);
+  }
+
+  function applyLang(lang) {
+    // Update all [data-sv] / [data-en] elements
+    document.querySelectorAll('[data-sv]').forEach(el => {
+      const text = el.dataset[lang];
+      if (text !== undefined) {
+        // Use innerHTML so <br> and <em> tags render correctly
+        el.innerHTML = text;
+      }
+    });
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+
+    // Update button label (shows the OTHER language you can switch to)
+    document.getElementById('lang-btn').textContent = lang === 'sv' ? 'EN' : 'SV';
+  }
+</script>
+
+</body>
+</html>
