@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NO20 — Stockholm</title>
+  <title>Nº20 — Stockholm</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,17 +58,24 @@
     }
 
     .nav-logo {
-      font-family: 'Cormorant', serif;
-      font-size: 20px;
-      font-weight: 400;
-      letter-spacing: .22em;
-      text-transform: uppercase;
+      font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: none;
       text-decoration: none;
       color: var(--cream);
       transition: color .45s;
     }
 
     nav.scrolled .nav-logo { color: var(--dark); }
+
+    /* Nav logo ordinal — slightly larger, top-aligned with N/20 */
+    .nav-logo .logo-ord {
+      font-size: .58em;
+      top: -0.75em;
+      border-bottom-width: 2px;
+    }
 
     .nav-right {
       display: flex;
@@ -160,6 +167,21 @@
       line-height: .86;
       letter-spacing: -.025em;
       color: var(--cream);
+    }
+
+    /* Ordinal indicator — Space Grotesk bold regardless of parent font */
+    .logo-ord {
+      display: inline-block;
+      font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+      font-size: .38em;
+      font-weight: 700;
+      vertical-align: baseline;
+      position: relative;
+      top: -1.1em;
+      border-bottom: .12em solid currentColor;
+      line-height: 1;
+      letter-spacing: 0;
+      padding-bottom: .04em;
     }
 
     .hero-title em {
@@ -447,6 +469,10 @@
       background: var(--beige);
     }
 
+    .g-item {
+      cursor: pointer;
+    }
+
     .g-item img {
       width: 100%;
       height: 100%;
@@ -461,7 +487,152 @@
     .g-item:nth-child(2) { grid-column: 3;     grid-row: 1; }
     .g-item:nth-child(3) { grid-column: 1;     grid-row: 2; }
     .g-item:nth-child(4) { grid-column: 2 / 4; grid-row: 2; }
-    .g-item:nth-child(5) { grid-column: 1 / 4; grid-row: 3; }
+    .g-item:nth-child(5) { grid-column: 1;     grid-row: 3; }
+    .g-item:nth-child(6) { grid-column: 2;     grid-row: 3; }
+    .g-item-cta          { grid-column: 3;     grid-row: 3; }
+
+    /* ── Gallery "Visa alla bilder" card */
+    .g-item-cta {
+      overflow: hidden;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: background .35s;
+    }
+    .g-item-cta:hover { background: #c8bfb0; }
+
+    .g-cta-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .g-cta-count {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .g-cta-label {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(19px, 2vw, 26px);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.2;
+      text-align: center;
+    }
+    .g-cta-arrow {
+      font-size: 18px;
+      color: var(--sage);
+      margin-top: 6px;
+    }
+
+    /* ══════════════════════════════════════ GALLERY OVERLAY */
+    .gallery-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(18,18,17,.97);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    .gallery-overlay.open { display: flex; }
+
+    .overlay-close {
+      position: absolute;
+      top: 24px; right: 36px;
+      background: none; border: none;
+      color: var(--cream); font-size: 30px;
+      cursor: pointer; opacity: .5;
+      transition: opacity .2s;
+      font-weight: 300;
+      line-height: 1;
+      padding: 0;
+      z-index: 10;
+    }
+    .overlay-close:hover { opacity: 1; }
+
+    .overlay-nav-btn {
+      position: absolute;
+      top: calc(50% - 60px);
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--cream); font-size: 26px;
+      cursor: pointer; opacity: .35;
+      transition: opacity .2s;
+      padding: 24px 20px;
+      z-index: 10;
+    }
+    .overlay-nav-btn:hover { opacity: .9; }
+    .overlay-prev { left: 8px; }
+    .overlay-next { right: 8px; }
+
+    .overlay-counter {
+      position: absolute;
+      top: 30px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      white-space: nowrap;
+    }
+
+    .overlay-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 76px 100px 16px;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .overlay-main img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+      transition: opacity .2s;
+    }
+
+    .overlay-strip-wrap {
+      width: 100%;
+      padding: 0 56px 28px;
+      flex-shrink: 0;
+    }
+    .overlay-strip {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(139,156,141,.5) transparent;
+      padding-bottom: 2px;
+    }
+    .overlay-strip::-webkit-scrollbar { height: 3px; }
+    .overlay-strip::-webkit-scrollbar-thumb { background: var(--sage-mid); border-radius: 2px; }
+    .strip-thumb {
+      flex: 0 0 70px;
+      height: 50px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: .3;
+      transition: opacity .2s;
+      background: var(--charcoal);
+    }
+    .strip-thumb:hover { opacity: .6; }
+    .strip-thumb.active { opacity: 1; outline: 1.5px solid var(--sage-mid); outline-offset: -1px; }
+    .strip-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ══════════════════════════════════════ CONTACT */
     #contact {
@@ -570,10 +741,10 @@
     }
 
     .f-logo {
-      font-family: 'Cormorant', serif;
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: .22em;
+      font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .04em;
       color: var(--cream);
     }
 
@@ -612,13 +783,15 @@
 
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 280px 240px 240px 200px;
+        grid-template-rows: 280px 240px 200px 200px 160px;
       }
       .g-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
       .g-item:nth-child(2) { grid-column: 1;     grid-row: 2; }
       .g-item:nth-child(3) { grid-column: 2;     grid-row: 2; }
       .g-item:nth-child(4) { grid-column: 1 / 3; grid-row: 3; }
-      .g-item:nth-child(5) { grid-column: 1 / 3; grid-row: 4; }
+      .g-item:nth-child(5) { grid-column: 1;     grid-row: 4; }
+      .g-item:nth-child(6) { grid-column: 2;     grid-row: 4; }
+      .g-item-cta          { grid-column: 1 / 3; grid-row: 5; }
 
       .contact-inner { grid-template-columns: 1fr; gap: 60px; }
       footer { padding: 24px 28px; }
@@ -635,7 +808,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">NO20</a>
+  <a href="#hero" class="nav-logo">N<span class='logo-ord'>o</span>20</a>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#gallery" data-sv="Galleri"         data-en="Gallery">Galleri</a></li>
@@ -654,7 +827,7 @@
     <p class="hero-eyebrow"
        data-sv="Stockholm, Sverige &mdash; Est. 2024"
        data-en="Stockholm, Sweden &mdash; Est. 2024">Stockholm, Sverige &mdash; Est. 2024</p>
-    <h1 class="hero-title">NO<em>20</em></h1>
+    <h1 class="hero-title">N<span class='logo-ord'>o</span><em>20</em></h1>
     <div class="hero-sub">
       <span class="hero-tagline"
             data-sv="Ett hem på vattnet."
@@ -672,7 +845,7 @@
 </section>
 
 <!-- GALLERY -->
-<!-- Replace img src values with actual NO20 photographs -->
+<!-- Replace img src values with actual N<span class='logo-ord'>o</span>20 photographs -->
 <section id="gallery">
   <div class="gallery-inner">
     <div class="gallery-header reveal">
@@ -680,29 +853,39 @@
         <span class="tag"
               data-sv="Galleri"
               data-en="Gallery">Galleri</span>
-        <h2 data-sv="Livet ombord på<br><em>NO20.</em>"
-            data-en="Life aboard<br><em>NO20.</em>">Livet ombord på<br><em>NO20.</em></h2>
+        <h2 data-sv="Livet ombord på<br><em>N<span class='logo-ord'>o</span>20.</em>"
+            data-en="Life aboard<br><em>N<span class='logo-ord'>o</span>20.</em>">Livet ombord på<br><em>N<span class='logo-ord'>o</span>20.</em></h2>
       </div>
       <span class="gallery-caption"
             data-sv="Utvalda fotografier"
             data-en="Selected photographs">Utvalda fotografier</span>
     </div>
     <div class="gallery-grid">
-      <div class="g-item reveal">
-        <img src="https://picsum.photos/seed/no20-ext/900/600" alt="NO20 på vattnet">
+      <div class="g-item reveal" onclick="openGallery(0)">
+        <img src="Images/IMG_8888.png" alt="Nº20">
       </div>
-      <div class="g-item reveal" style="transition-delay:.08s">
-        <img src="https://picsum.photos/seed/no20-cabin/500/700" alt="Hyttinteriör">
+      <div class="g-item reveal" style="transition-delay:.08s" onclick="openGallery(1)">
+        <img src="Images/IMG_8889.png" alt="Nº20">
       </div>
-      <div class="g-item reveal" style="transition-delay:.08s">
-        <img src="https://picsum.photos/seed/no20-deck/500/560" alt="Akterdäck">
+      <div class="g-item reveal" style="transition-delay:.08s" onclick="openGallery(2)">
+        <img src="Images/IMG_8890.png" alt="Nº20">
       </div>
-      <div class="g-item reveal" style="transition-delay:.14s">
-        <img src="https://picsum.photos/seed/no20-lounge/820/480" alt="Salongen">
+      <div class="g-item reveal" style="transition-delay:.14s" onclick="openGallery(3)">
+        <img src="Images/IMG_8891.png" alt="Nº20">
       </div>
-      <div class="g-item reveal" style="transition-delay:.2s">
-        <img src="https://picsum.photos/seed/no20-arch/1100/380" alt="Stockholms skärgård">
+      <div class="g-item reveal" style="transition-delay:.2s" onclick="openGallery(4)">
+        <img src="Images/IMG_8892.png" alt="Nº20">
       </div>
+      <div class="g-item reveal" style="transition-delay:.26s" onclick="openGallery(5)">
+        <img src="Images/IMG_8893.png" alt="Nº20">
+      </div>
+      <button class="g-item-cta reveal" style="transition-delay:.32s" onclick="openGallery(0)" aria-label="Visa alla bilder">
+        <div class="g-cta-inner">
+          <span class="g-cta-count">33 bilder</span>
+          <span class="g-cta-label">Visa alla<br>bilder</span>
+          <span class="g-cta-arrow">↗</span>
+        </div>
+      </button>
     </div>
   </div>
 </section>
@@ -718,8 +901,10 @@
         <h2 data-sv="Siffrorna bakom<br>fartyget."
             data-en="The numbers<br>behind the craft.">Siffrorna bakom<br>fartyget.</h2>
       </div>
-      <p data-sv="NO20 är en specialbyggd stålhusbåt, utformad för komfort, stabilitet och åretruntboende i den svenska skärgården. Alla mått är nominella och föremål för slutlig besiktning."
-         data-en="NO20 is a custom-built steel houseboat, designed for comfort, stability, and year-round habitation in the Swedish archipelago. All figures are nominal and subject to final survey.">NO20 är en specialbyggd stålhusbåt, utformad för komfort, stabilitet och åretruntboende i den svenska skärgården. Alla mått är nominella och föremål för slutlig besiktning.</p>
+      <div>
+        <p data-sv="N<span class='logo-ord'>o</span>20 är en specialbyggd stålhusbåt, utformad för komfort, stabilitet och åretruntboende i den svenska skärgården. Alla mått är nominella och föremål för slutlig besiktning."
+           data-en="N<span class='logo-ord'>o</span>20 is a custom-built steel houseboat, designed for comfort, stability, and year-round habitation in the Swedish archipelago. All figures are nominal and subject to final survey.">N<span class='logo-ord'>o</span>20 är en specialbyggd stålhusbåt, utformad för komfort, stabilitet och åretruntboende i den svenska skärgården. Alla mått är nominella och föremål för slutlig besiktning.</p>
+      </div>
     </div>
     <div class="specs-grid">
       <div class="spec-item reveal">
@@ -783,22 +968,22 @@
       </div>
     </div>
     <div class="story-right reveal" style="transition-delay:.15s">
-      <p data-sv="NO20 är inte skapad för att följa det förväntade. Hon är tänkt som något sällsyntare — ett flytande hem som förenar den nordiska hantverkstraditionens stilla klarhet med den ovanliga friheten att leva på vatten. Varje trätapp, varje målad vägg, varje genomtänkt vrå är resultatet av år av tankar kring vad det verkligen innebär att leva väl."
-         data-en="NO20 was not born from convention. She was conceived as something rarer — a floating home that unites the quiet clarity of Nordic craftsmanship with the uncommon freedom of life upon water. Every timber joint, every painted wall, every considered corner reflects years of thinking about what it truly means to live well.">NO20 är inte skapad för att följa det förväntade. Hon är tänkt som något sällsyntare — ett flytande hem som förenar den nordiska hantverkstraditionens stilla klarhet med den ovanliga friheten att leva på vatten. Varje trätapp, varje målad vägg, varje genomtänkt vrå är resultatet av år av tankar kring vad det verkligen innebär att leva väl.</p>
+      <p data-sv="N<span class='logo-ord'>o</span>20 är inte skapad för att följa det förväntade. Hon är tänkt som något sällsyntare — ett flytande hem som förenar den nordiska hantverkstraditionens stilla klarhet med den ovanliga friheten att leva på vatten. Varje trätapp, varje målad vägg, varje genomtänkt vrå är resultatet av år av tankar kring vad det verkligen innebär att leva väl."
+         data-en="N<span class='logo-ord'>o</span>20 was not born from convention. She was conceived as something rarer — a floating home that unites the quiet clarity of Nordic craftsmanship with the uncommon freedom of life upon water. Every timber joint, every painted wall, every considered corner reflects years of thinking about what it truly means to live well.">N<span class='logo-ord'>o</span>20 är inte skapad för att följa det förväntade. Hon är tänkt som något sällsyntare — ett flytande hem som förenar den nordiska hantverkstraditionens stilla klarhet med den ovanliga friheten att leva på vatten. Varje trätapp, varje målad vägg, varje genomtänkt vrå är resultatet av år av tankar kring vad det verkligen innebär att leva väl.</p>
 
       <div class="pull-quote">
         <p data-sv="&ldquo;Vi ville inte ha en båt. Vi ville ha ett ställe att andas — som råkade flyta.&rdquo;"
            data-en="&ldquo;We didn&rsquo;t want a boat. We wanted a place to breathe — that simply happened to float.&rdquo;">&ldquo;Vi ville inte ha en båt. Vi ville ha ett ställe att andas — som råkade flyta.&rdquo;</p>
       </div>
 
-      <p data-sv="Byggd för hand utanför Stockholm tog NO20 tre år från första skiss till första färd på vattnet. Skrovet är stål, ärligt och beständigt. Interiören är något helt annat — varmt trä, salviagröna väggar och blekt morgonljus som rör sig genom hyttfönster i långa, långsamma bågar under dagen."
-         data-en="Built by hand outside Stockholm, NO20 took three years from first pencil sketch to first voyage. The hull is steel, honest and permanent. The interior is something else entirely — warm timber, sage-green walls, and pale morning light that moves through porthole glass in long, slow arcs across the day.">Byggd för hand utanför Stockholm tog NO20 tre år från första skiss till första färd på vattnet. Skrovet är stål, ärligt och beständigt. Interiören är något helt annat — varmt trä, salviagröna väggar och blekt morgonljus som rör sig genom hyttfönster i långa, långsamma bågar under dagen.</p>
+      <p data-sv="Byggd för hand utanför Stockholm tog N<span class='logo-ord'>o</span>20 tre år från första skiss till första färd på vattnet. Skrovet är stål, ärligt och beständigt. Interiören är något helt annat — varmt trä, salviagröna väggar och blekt morgonljus som rör sig genom hyttfönster i långa, långsamma bågar under dagen."
+         data-en="Built by hand outside Stockholm, N<span class='logo-ord'>o</span>20 took three years from first pencil sketch to first voyage. The hull is steel, honest and permanent. The interior is something else entirely — warm timber, sage-green walls, and pale morning light that moves through porthole glass in long, slow arcs across the day.">Byggd för hand utanför Stockholm tog N<span class='logo-ord'>o</span>20 tre år från första skiss till första färd på vattnet. Skrovet är stål, ärligt och beständigt. Interiören är något helt annat — varmt trä, salviagröna väggar och blekt morgonljus som rör sig genom hyttfönster i långa, långsamma bågar under dagen.</p>
 
       <p data-sv="Hon rymmer upp till åtta gäster i fyra privata hytter, varje rum utfört med samma omsorg som man finner på ett noggrant utformat hotell. Inget ombord är onödigt. Inget saknas. Kabyssen är generös, akterdecket brett och kvällarna på vattnet längre än man väntar sig."
          data-en="She sleeps up to eight guests across four private cabins, each finished with the same consideration you would find in a carefully edited hotel. Nothing aboard is unnecessary. Nothing is missing. The galley is generous, the aft deck wide, and the evenings on the water are longer than you expect.">Hon rymmer upp till åtta gäster i fyra privata hytter, varje rum utfört med samma omsorg som man finner på ett noggrant utformat hotell. Inget ombord är onödigt. Inget saknas. Kabyssen är generös, akterdecket brett och kvällarna på vattnet längre än man väntar sig.</p>
 
-      <p data-sv="Idag är NO20 tillgänglig för privata vistelser, intima sammankomster och längre arrangemang för gäster som delar en uppskattning för det oskynsamma och välgjorda."
-         data-en="Today NO20 is available for private stays, intimate celebrations, and longer arrangements to guests who share an appreciation for the unhurried and the well-made.">Idag är NO20 tillgänglig för privata vistelser, intima sammankomster och längre arrangemang för gäster som delar en uppskattning för det oskynsamma och välgjorda.</p>
+      <p data-sv="Idag är N<span class='logo-ord'>o</span>20 tillgänglig för privata vistelser, intima sammankomster och längre arrangemang för gäster som delar en uppskattning för det oskynsamma och välgjorda."
+         data-en="Today N<span class='logo-ord'>o</span>20 is available for private stays, intimate celebrations, and longer arrangements to guests who share an appreciation for the unhurried and the well-made.">Idag är N<span class='logo-ord'>o</span>20 tillgänglig för privata vistelser, intima sammankomster och längre arrangemang för gäster som delar en uppskattning för det oskynsamma och välgjorda.</p>
     </div>
   </div>
 </section>
@@ -812,8 +997,6 @@
             data-en="Get in touch">Kontakta oss</span>
       <h2 data-sv="Välkommen<br><em>ombord.</em>"
           data-en="Come<br><em>aboard.</em>">Välkommen<br><em>ombord.</em></h2>
-      <p data-sv="Oavsett om du söker en privat tillflyktsort, ett intimt firande eller ett längre arrangemang — NO20 är tillgänglig för gäster som värdesätter det genomtänkta och det oskynsamma. Vi välkomnar förfrågningar av alla slag."
-         data-en="Whether you are seeking a private escape, an intimate celebration, or a longer arrangement — NO20 is available for guests who value the considered and the unhurried. We welcome enquiries of all kinds.">Oavsett om du söker en privat tillflyktsort, ett intimt firande eller ett längre arrangemang — NO20 är tillgänglig för gäster som värdesätter det genomtänkta och det oskynsamma. Vi välkomnar förfrågningar av alla slag.</p>
       <a href="mailto:hello@no20.se" class="btn"
          data-sv="Skriv till oss"
          data-en="Write to us">Skriv till oss</a>
@@ -839,11 +1022,25 @@
   </div>
 </section>
 
+<!-- GALLERY OVERLAY -->
+<div id="gallery-overlay" class="gallery-overlay" role="dialog" aria-modal="true">
+  <button class="overlay-close" onclick="closeGallery()" aria-label="Stäng">×</button>
+  <button class="overlay-nav-btn overlay-prev" onclick="galleryStep(-1)" aria-label="Föregående">&#8592;</button>
+  <button class="overlay-nav-btn overlay-next" onclick="galleryStep(1)" aria-label="Nästa">&#8594;</button>
+  <span class="overlay-counter" id="overlay-counter"></span>
+  <div class="overlay-main">
+    <img id="overlay-img" src="" alt="">
+  </div>
+  <div class="overlay-strip-wrap">
+    <div class="overlay-strip" id="overlay-strip"></div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
-  <span class="f-logo">NO20</span>
-  <p data-sv="&copy; 2024 NO20. Alla r&auml;ttigheter f&ouml;rbeh&aring;llna. Stockholm, Sverige."
-     data-en="&copy; 2024 NO20. All rights reserved. Stockholm, Sweden.">&copy; 2024 NO20. Alla r&auml;ttigheter f&ouml;rbeh&aring;llna. Stockholm, Sverige.</p>
+  <span class="f-logo">N<span class='logo-ord'>o</span>20</span>
+  <p data-sv="&copy; 2024 N<span class='logo-ord'>o</span>20. Alla r&auml;ttigheter f&ouml;rbeh&aring;llna. Stockholm, Sverige."
+     data-en="&copy; 2024 N<span class='logo-ord'>o</span>20. All rights reserved. Stockholm, Sweden.">&copy; 2024 N<span class='logo-ord'>o</span>20. Alla r&auml;ttigheter f&ouml;rbeh&aring;llna. Stockholm, Sverige.</p>
 </footer>
 
 <script>
@@ -864,6 +1061,81 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Gallery lightbox ─────────────────────────────────
+  const galleryImages = [
+    'Images/IMG_8888.png','Images/IMG_8889.png','Images/IMG_8890.png',
+    'Images/IMG_8891.png','Images/IMG_8892.png','Images/IMG_8893.png',
+    'Images/IMG_9036.png','Images/IMG_9037.png','Images/IMG_9038.png',
+    'Images/IMG_9039.png','Images/IMG_9040.png','Images/IMG_9041.png',
+    'Images/IMG_9042.png','Images/IMG_9043.png','Images/IMG_9044.png',
+    'Images/IMG_9045.png','Images/IMG_9046.png','Images/IMG_9047.png',
+    'Images/IMG_9049.png','Images/IMG_9050.png','Images/IMG_9051.png',
+    'Images/IMG_9052.png','Images/IMG_9053.png','Images/IMG_9054.png',
+    'Images/IMG_9055.png','Images/IMG_9056.png','Images/IMG_9057.png',
+    'Images/IMG_9058.png','Images/IMG_9059.png','Images/IMG_9060.png',
+    'Images/IMG_9061.png','Images/IMG_9062.png','Images/IMG_9063.png'
+  ];
+  let currentGalleryIdx = 0;
+  let stripBuilt = false;
+
+  function openGallery(idx) {
+    const overlay = document.getElementById('gallery-overlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (!stripBuilt) {
+      const strip = document.getElementById('overlay-strip');
+      galleryImages.forEach((src, i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'strip-thumb';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.loading = 'lazy';
+        thumb.appendChild(img);
+        thumb.addEventListener('click', () => showGalleryImage(i));
+        strip.appendChild(thumb);
+      });
+      stripBuilt = true;
+    }
+    showGalleryImage(idx);
+  }
+
+  function showGalleryImage(idx) {
+    currentGalleryIdx = (idx + galleryImages.length) % galleryImages.length;
+    const imgEl = document.getElementById('overlay-img');
+    imgEl.style.opacity = '0';
+    imgEl.src = galleryImages[currentGalleryIdx];
+    imgEl.onload = () => { imgEl.style.opacity = '1'; };
+    document.getElementById('overlay-counter').textContent =
+      (currentGalleryIdx + 1) + ' / ' + galleryImages.length;
+    const strip = document.getElementById('overlay-strip');
+    strip.querySelectorAll('.strip-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === currentGalleryIdx);
+    });
+    const activeThumb = strip.children[currentGalleryIdx];
+    if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  function galleryStep(dir) { showGalleryImage(currentGalleryIdx + dir); }
+
+  function closeGallery() {
+    document.getElementById('gallery-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    const overlay = document.getElementById('gallery-overlay');
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'ArrowRight') galleryStep(1);
+    if (e.key === 'ArrowLeft')  galleryStep(-1);
+    if (e.key === 'Escape')     closeGallery();
+  });
+
+  // Close overlay on backdrop click
+  document.getElementById('gallery-overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeGallery();
+  });
 
   // ── Language toggle ───────────────────────────────────
   let currentLang = 'sv';
