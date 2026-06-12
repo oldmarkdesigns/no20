@@ -272,11 +272,11 @@
     }
 
     .story-inner {
-      max-width: 1280px;
+      max-width: 1440px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 5fr 6fr;
-      gap: 100px;
+      grid-template-columns: 5fr 3fr 6fr;
+      gap: 56px;
       align-items: start;
     }
 
@@ -296,33 +296,24 @@
       color: var(--sage);
     }
 
-    .story-drawings {
-      display: flex;
-      gap: 10px;
-      align-items: stretch;
-    }
-
     .story-photo {
-      flex: 0 0 58%;
+      width: 100%;
       aspect-ratio: 4/5;
       background: linear-gradient(155deg, var(--beige) 0%, var(--blush) 100%);
-      display: flex;
-      align-items: flex-end;
-      padding: 22px 24px;
       overflow: hidden;
     }
 
     .drawings-collage {
-      flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(3, 1fr);
       gap: 8px;
+      align-self: start;
     }
 
     .drawings-collage img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 4/5;
       object-fit: cover;
       filter: grayscale(1) contrast(1.05);
       display: block;
@@ -384,9 +375,9 @@
 
     .specs-top h2 {
       font-family: 'Cormorant', serif;
-      font-size: clamp(38px, 4.8vw, 66px);
+      font-size: clamp(24px, 2.6vw, 38px);
       font-weight: 300;
-      line-height: 1.07;
+      line-height: 1.18;
       letter-spacing: -.01em;
     }
 
@@ -805,9 +796,7 @@
 
       #story, #specs, #gallery, #contact { padding: 88px 28px; }
 
-      .story-inner { grid-template-columns: 1fr; gap: 52px; }
-      .story-drawings { flex-direction: column; }
-      .story-photo { flex: none; width: 100%; }
+      .story-inner { grid-template-columns: 1fr; gap: 44px; }
       .drawings-collage { grid-template-rows: auto; }
       .specs-top   { grid-template-columns: 1fr; gap: 32px; }
       .specs-grid  { grid-template-columns: repeat(2, 1fr); }
@@ -967,17 +956,15 @@
             data-en="The Vessel">Fartyget</span>
       <h2 data-sv="Byggd med<br><em>omsorg,</em><br>förtöjd med<br>intention."
           data-en="Built with<br><em>intention,</em><br>moored with<br>care.">Byggd med<br><em>omsorg,</em><br>förtöjd med<br>intention.</h2>
-      <div class="story-drawings">
-        <img src="Drawings/IMG_9071.jpg" alt="Handritad konstruktionsritning" class="story-photo" style="object-fit: cover; object-position: center; filter: grayscale(1) contrast(1.05);">
-        <div class="drawings-collage">
-          <img src="Drawings/IMG_9065.jpg" alt="Ritning">
-          <img src="Drawings/IMG_9066.jpg" alt="Ritning">
-          <img src="Drawings/IMG_9067.jpg" alt="Ritning">
-          <img src="Drawings/IMG_9068.jpg" alt="Ritning">
-          <img src="Drawings/IMG_9070.jpg" alt="Ritning">
-          <img src="Drawings/IMG_9072.jpg" alt="Ritning">
-        </div>
-      </div>
+      <img src="Drawings/IMG_9071.jpg" alt="Handritad konstruktionsritning" class="story-photo" style="object-fit: cover; object-position: center; filter: grayscale(1) contrast(1.05);">
+    </div>
+    <div class="drawings-collage reveal" style="transition-delay:.1s">
+      <img src="Drawings/IMG_9065.jpg" alt="Ritning">
+      <img src="Drawings/IMG_9066.jpg" alt="Ritning">
+      <img src="Drawings/IMG_9067.jpg" alt="Ritning">
+      <img src="Drawings/IMG_9068.jpg" alt="Ritning">
+      <img src="Drawings/IMG_9070.jpg" alt="Ritning">
+      <img src="Drawings/IMG_9072.jpg" alt="Ritning">
     </div>
     <div class="story-right reveal" style="transition-delay:.15s">
       <p data-sv="N<span class='logo-ord'>o</span>20 tog form på papper långt innan den tog form på vattnet. Varje mått, varje detalj och varje lösning ritades för hand — om och om igen — tills allt stämde. Det är ett projekt som byggdes med omsorg, tålamod och egna händer."
