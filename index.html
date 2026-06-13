@@ -510,7 +510,8 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      row-gap: 12px;
+      row-gap: 16px;
+      margin-left: -18px; /* offset first item's left padding so all rows flush-left */
     }
 
     .spec-use {
@@ -524,8 +525,7 @@
       white-space: nowrap;
     }
 
-    .spec-use:first-child { padding-left: 0; }
-    .spec-use:last-child  { border-right: none; }
+    .spec-use:last-child { border-right: none; }
 
     .specs-grid {
       display: grid;
