@@ -394,14 +394,6 @@
       color: var(--dim);
     }
 
-    /* ── Sketchbook right panel */
-    .sb-right {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      align-items: flex-start;
-    }
-
     /* ── Sketchbook thumbnails */
     .sb-thumbs {
       display: grid;
@@ -410,29 +402,6 @@
       align-content: start;
     }
 
-    /* ── Uses list */
-    .sb-uses .tag {
-      color: var(--sage);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .sb-uses ul {
-      list-style: none;
-      min-width: 180px;
-    }
-
-    .sb-uses li {
-      font-family: 'Cormorant', serif;
-      font-size: clamp(18px, 1.6vw, 24px);
-      font-weight: 300;
-      color: var(--dark);
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(0,0,0,.1);
-      line-height: 1.2;
-    }
-
-    .sb-uses li:first-child { border-top: 1px solid rgba(0,0,0,.1); }
 
     .sb-thumb {
       aspect-ratio: 3/4;
@@ -519,6 +488,29 @@
       color: var(--dim);
       max-width: 420px;
     }
+
+    .spec-uses-wrap .tag { color: var(--sage-mid); display: block; margin-bottom: 16px; }
+
+    .spec-uses {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      row-gap: 12px;
+    }
+
+    .spec-use {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(15px, 1.3vw, 19px);
+      font-weight: 300;
+      color: var(--cream);
+      padding: 0 18px;
+      border-right: 1px solid rgba(255,255,255,.18);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .spec-use:first-child { padding-left: 0; }
+    .spec-use:last-child  { border-right: none; }
 
     .specs-grid {
       display: grid;
@@ -1060,6 +1052,19 @@
         <h2 data-sv="Tillverkad i glasfiber helt utan genomföringar i skrovet, tryggt &amp; underhållsfritt."
             data-en="Built in fibreglass with no through-hull fittings — safe &amp; maintenance-free.">Tillverkad i glasfiber helt utan genomföringar i skrovet, tryggt &amp; underhållsfritt.</h2>
       </div>
+      <div class="spec-uses-wrap">
+        <span class="tag" data-sv="Kan användas till" data-en="Can be used as">Kan användas till</span>
+        <div class="spec-uses">
+          <span class="spec-use" data-sv="Airbnb"                data-en="Airbnb">Airbnb</span>
+          <span class="spec-use" data-sv="Hotell &amp; kursgård" data-en="Hotel &amp; conference">Hotell &amp; kursgård</span>
+          <span class="spec-use" data-sv="Gästrum"               data-en="Guest room">Gästrum</span>
+          <span class="spec-use" data-sv="Sommarstuga"           data-en="Summer cottage">Sommarstuga</span>
+          <span class="spec-use" data-sv="Brygghäng"             data-en="Dock hangout">Brygghäng</span>
+          <span class="spec-use" data-sv="Kanalbåt"              data-en="Canal boat">Kanalbåt</span>
+          <span class="spec-use" data-sv="Bastu"                 data-en="Sauna">Bastu</span>
+          <span class="spec-use" data-sv="Kontor"                data-en="Office">Kontor</span>
+        </div>
+      </div>
     </div>
     <div class="specs-grid">
       <div class="spec-item reveal">
@@ -1112,33 +1117,15 @@
       </div>
     </div>
 
-    <!-- Right panel: thumbs + uses -->
-    <div class="sb-right">
-
-      <div class="sb-thumbs" id="sb-thumbs">
-        <button class="sb-thumb active" onclick="sbGo(0)"><img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1"></button>
-        <button class="sb-thumb" onclick="sbGo(1)"><img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2"></button>
-        <button class="sb-thumb" onclick="sbGo(2)"><img src="Drawings/IMG_9067-nobg.png" alt="Ritning 3"></button>
-        <button class="sb-thumb" onclick="sbGo(3)"><img src="Drawings/IMG_9068-nobg.png" alt="Ritning 4"></button>
-        <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
-        <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
-        <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
-      </div>
-
-      <div class="sb-uses">
-        <span class="tag" data-sv="Kan användas till" data-en="Can be used as">Kan användas till</span>
-        <ul>
-          <li data-sv="Airbnb"            data-en="Airbnb">Airbnb</li>
-          <li data-sv="Hotell &amp; kursgård" data-en="Hotel &amp; conference">Hotell &amp; kursgård</li>
-          <li data-sv="Gästrum"           data-en="Guest room">Gästrum</li>
-          <li data-sv="Sommarstuga"       data-en="Summer cottage">Sommarstuga</li>
-          <li data-sv="Brygghäng"         data-en="Dock hangout">Brygghäng</li>
-          <li data-sv="Kanalbåt"          data-en="Canal boat">Kanalbåt</li>
-          <li data-sv="Bastu"             data-en="Sauna">Bastu</li>
-          <li data-sv="Kontor"            data-en="Office">Kontor</li>
-        </ul>
-      </div>
-
+    <!-- Thumbnail grid -->
+    <div class="sb-thumbs" id="sb-thumbs">
+      <button class="sb-thumb active" onclick="sbGo(0)"><img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1"></button>
+      <button class="sb-thumb" onclick="sbGo(1)"><img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2"></button>
+      <button class="sb-thumb" onclick="sbGo(2)"><img src="Drawings/IMG_9067-nobg.png" alt="Ritning 3"></button>
+      <button class="sb-thumb" onclick="sbGo(3)"><img src="Drawings/IMG_9068-nobg.png" alt="Ritning 4"></button>
+      <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
+      <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
+      <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
     </div>
 
   </div>
