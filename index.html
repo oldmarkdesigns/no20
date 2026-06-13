@@ -394,14 +394,45 @@
       color: var(--dim);
     }
 
+    /* ── Sketchbook right panel */
+    .sb-right {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
     /* ── Sketchbook thumbnails */
     .sb-thumbs {
-      flex: 0 0 auto;
       display: grid;
       grid-template-columns: repeat(2, 72px);
       gap: 6px;
       align-content: start;
     }
+
+    /* ── Uses list */
+    .sb-uses .tag {
+      color: var(--sage);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sb-uses ul {
+      list-style: none;
+      min-width: 180px;
+    }
+
+    .sb-uses li {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(18px, 1.6vw, 24px);
+      font-weight: 300;
+      color: var(--dark);
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+      line-height: 1.2;
+    }
+
+    .sb-uses li:first-child { border-top: 1px solid rgba(0,0,0,.1); }
 
     .sb-thumb {
       aspect-ratio: 3/4;
@@ -900,7 +931,8 @@
       .story-header { margin-bottom: 32px; }
       .sketchbook-wrap { flex-direction: column; }
       .sketchbook { flex: none; width: 100%; max-width: 380px; }
-      .sb-thumbs { grid-template-columns: repeat(4, 1fr); }
+      .sb-thumbs { grid-template-columns: repeat(4, 72px); }
+      .sb-uses ul { min-width: unset; }
       .specs-top   { grid-template-columns: 1fr; gap: 32px; }
       .specs-grid  { grid-template-columns: repeat(2, 1fr); }
 
@@ -1080,15 +1112,33 @@
       </div>
     </div>
 
-    <!-- Thumbnail grid -->
-    <div class="sb-thumbs" id="sb-thumbs">
-      <button class="sb-thumb active" onclick="sbGo(0)"><img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1"></button>
-      <button class="sb-thumb" onclick="sbGo(1)"><img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2"></button>
-      <button class="sb-thumb" onclick="sbGo(2)"><img src="Drawings/IMG_9067-nobg.png" alt="Ritning 3"></button>
-      <button class="sb-thumb" onclick="sbGo(3)"><img src="Drawings/IMG_9068-nobg.png" alt="Ritning 4"></button>
-      <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
-      <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
-      <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
+    <!-- Right panel: thumbs + uses -->
+    <div class="sb-right">
+
+      <div class="sb-thumbs" id="sb-thumbs">
+        <button class="sb-thumb active" onclick="sbGo(0)"><img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1"></button>
+        <button class="sb-thumb" onclick="sbGo(1)"><img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2"></button>
+        <button class="sb-thumb" onclick="sbGo(2)"><img src="Drawings/IMG_9067-nobg.png" alt="Ritning 3"></button>
+        <button class="sb-thumb" onclick="sbGo(3)"><img src="Drawings/IMG_9068-nobg.png" alt="Ritning 4"></button>
+        <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
+        <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
+        <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
+      </div>
+
+      <div class="sb-uses">
+        <span class="tag" data-sv="Kan användas till" data-en="Can be used as">Kan användas till</span>
+        <ul>
+          <li data-sv="Airbnb"            data-en="Airbnb">Airbnb</li>
+          <li data-sv="Hotell &amp; kursgård" data-en="Hotel &amp; conference">Hotell &amp; kursgård</li>
+          <li data-sv="Gästrum"           data-en="Guest room">Gästrum</li>
+          <li data-sv="Sommarstuga"       data-en="Summer cottage">Sommarstuga</li>
+          <li data-sv="Brygghäng"         data-en="Dock hangout">Brygghäng</li>
+          <li data-sv="Kanalbåt"          data-en="Canal boat">Kanalbåt</li>
+          <li data-sv="Bastu"             data-en="Sauna">Bastu</li>
+          <li data-sv="Kontor"            data-en="Office">Kontor</li>
+        </ul>
+      </div>
+
     </div>
 
   </div>
