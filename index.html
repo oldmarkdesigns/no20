@@ -280,65 +280,154 @@
       margin: 0 0 48px;
     }
 
-    .story-inner {
-      max-width: 780px;
-      margin: 0;
-      display: grid;
-      grid-template-columns: 5fr 3fr;
-      gap: 12px;
-      align-items: stretch;
-    }
+    .story-header .tag { color: var(--sage); }
 
-    .story-header .tag,
-    .story-left .tag { color: var(--sage); }
-
-    .story-header h2,
-    .story-left h2 {
+    .story-header h2 {
       font-family: 'Cormorant', serif;
       font-size: clamp(44px, 5.5vw, 74px);
       font-weight: 400;
       line-height: 1.07;
       letter-spacing: -.01em;
-      margin-bottom: 44px;
+      margin-bottom: 0;
     }
 
-    .story-header h2 em,
-    .story-left h2 em {
+    .story-header h2 em {
       font-style: italic;
       color: var(--sage);
     }
 
-    .story-photo {
+    /* ── Sketchbook */
+    .sketchbook-wrap {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .sketchbook {
+      flex: 0 0 380px;
+      background: #F5EFE4;
+      border-radius: 3px 6px 6px 3px;
+      box-shadow:
+        3px 0 0 #d4c9b6,
+        6px 0 0 #bfb4a1,
+        8px 4px 28px rgba(0,0,0,.18);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sb-binding {
+      background: #252523;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sb-ring {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2.5px solid #4a4a47;
+      background: var(--cream);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+    }
+
+    .sb-page {
+      background: var(--cream);
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sb-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.06) 0%, transparent 12%);
+      pointer-events: none;
+    }
+
+    .sb-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      background: linear-gradient(155deg, var(--beige) 0%, var(--blush) 100%);
-      overflow: hidden;
-      display: block;
+      object-fit: contain;
+      transition: opacity .25s ease, transform .25s ease;
     }
 
-    .drawings-collage {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      align-self: start;
+    .sb-img.fading {
+      opacity: 0;
+      transform: scale(.97);
     }
 
-    .drawings-collage img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      display: block;
+    .sb-nav {
+      background: #F5EFE4;
+      border-top: 1px solid rgba(0,0,0,.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
     }
 
-    .photo-label {
-      font-size: 10px;
-      letter-spacing: .1em;
+    .sb-btn {
+      font-family: 'Cormorant', serif;
+      font-size: 24px;
+      font-weight: 300;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark);
+      padding: 0 8px;
+      line-height: 1;
+      transition: opacity .2s;
+    }
+    .sb-btn:hover { opacity: .4; }
+
+    .sb-count {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--dim);
     }
 
-    .story-right { padding-top: 4px; }
+    /* ── Sketchbook thumbnails */
+    .sb-thumbs {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .sb-thumb {
+      aspect-ratio: 3/4;
+      background: #EDE8DF;
+      border: 2px solid transparent;
+      cursor: pointer;
+      overflow: hidden;
+      padding: 6px;
+      transition: border-color .2s, opacity .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sb-thumb:hover { opacity: .75; }
+
+    .sb-thumb.active {
+      border-color: var(--dark);
+    }
+
+    .sb-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
 
     .story-right p {
       font-size: 15.5px;
@@ -809,7 +898,9 @@
       #story, #specs, #gallery, #contact { padding: 88px 28px; }
 
       .story-header { margin-bottom: 32px; }
-      .story-inner  { grid-template-columns: 1fr; gap: 12px; align-items: start; }
+      .sketchbook-wrap { flex-direction: column; }
+      .sketchbook { flex: none; width: 100%; max-width: 380px; }
+      .sb-thumbs { grid-template-columns: repeat(4, 1fr); }
       .specs-top   { grid-template-columns: 1fr; gap: 32px; }
       .specs-grid  { grid-template-columns: repeat(2, 1fr); }
 
@@ -969,18 +1060,37 @@
     <h2 data-sv="Ritad från <em>grunden.</em>"
         data-en="Drawn from <em>scratch.</em>">Ritad från <em>grunden.</em></h2>
   </div>
-  <div class="story-inner">
-    <div class="story-left reveal">
-      <img src="Drawings/IMG_9071-nobg.png" alt="Handritad konstruktionsritning" class="story-photo" style="object-fit: cover; object-position: center;">
+  <div class="sketchbook-wrap reveal">
+
+    <!-- Book -->
+    <div class="sketchbook">
+      <div class="sb-binding">
+        <div class="sb-ring"></div><div class="sb-ring"></div><div class="sb-ring"></div>
+        <div class="sb-ring"></div><div class="sb-ring"></div><div class="sb-ring"></div>
+        <div class="sb-ring"></div><div class="sb-ring"></div><div class="sb-ring"></div>
+        <div class="sb-ring"></div><div class="sb-ring"></div>
+      </div>
+      <div class="sb-page">
+        <img class="sb-img" id="sb-main" src="Drawings/IMG_9065-nobg.png" alt="Ritning">
+      </div>
+      <div class="sb-nav">
+        <button class="sb-btn" onclick="sbStep(-1)" aria-label="Föregående">←</button>
+        <span class="sb-count" id="sb-count">1 / 7</span>
+        <button class="sb-btn" onclick="sbStep(1)" aria-label="Nästa">→</button>
+      </div>
     </div>
-    <div class="drawings-collage reveal" style="transition-delay:.1s">
-      <img src="Drawings/IMG_9065-nobg.png" alt="Ritning">
-      <img src="Drawings/IMG_9066-nobg.png" alt="Ritning">
-      <img src="Drawings/IMG_9067-nobg.png" alt="Ritning">
-      <img src="Drawings/IMG_9068-nobg.png" alt="Ritning">
-      <img src="Drawings/IMG_9070-nobg.png" alt="Ritning">
-      <img src="Drawings/IMG_9072-nobg.png" alt="Ritning">
+
+    <!-- Thumbnail grid -->
+    <div class="sb-thumbs" id="sb-thumbs">
+      <button class="sb-thumb active" onclick="sbGo(0)"><img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1"></button>
+      <button class="sb-thumb" onclick="sbGo(1)"><img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2"></button>
+      <button class="sb-thumb" onclick="sbGo(2)"><img src="Drawings/IMG_9067-nobg.png" alt="Ritning 3"></button>
+      <button class="sb-thumb" onclick="sbGo(3)"><img src="Drawings/IMG_9068-nobg.png" alt="Ritning 4"></button>
+      <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
+      <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
+      <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
     </div>
+
   </div>
   </div><!-- /story-container -->
 </section>
@@ -1038,6 +1148,41 @@
 </footer>
 
 <script>
+  // ── Sketchbook ────────────────────────────────────────
+  const sbImages = [
+    'Drawings/IMG_9065-nobg.png',
+    'Drawings/IMG_9066-nobg.png',
+    'Drawings/IMG_9067-nobg.png',
+    'Drawings/IMG_9068-nobg.png',
+    'Drawings/IMG_9070-nobg.png',
+    'Drawings/IMG_9071-nobg.png',
+    'Drawings/IMG_9072-nobg.png',
+  ];
+  let sbIdx = 0;
+
+  function sbGo(idx) {
+    idx = ((idx % sbImages.length) + sbImages.length) % sbImages.length;
+    const img    = document.getElementById('sb-main');
+    const count  = document.getElementById('sb-count');
+    const thumbs = document.querySelectorAll('#sb-thumbs .sb-thumb');
+    img.classList.add('fading');
+    setTimeout(() => {
+      sbIdx = idx;
+      img.src = sbImages[sbIdx];
+      img.classList.remove('fading');
+      count.textContent = (sbIdx + 1) + ' / ' + sbImages.length;
+      thumbs.forEach((t, i) => t.classList.toggle('active', i === sbIdx));
+    }, 250);
+  }
+
+  function sbStep(dir) { sbGo(sbIdx + dir); }
+
+  // Keyboard left / right arrows
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  sbStep(-1);
+    if (e.key === 'ArrowRight') sbStep(1);
+  });
+
   // ── Nav scroll state ──────────────────────────────────
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
