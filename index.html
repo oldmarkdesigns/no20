@@ -300,7 +300,7 @@
     .sketchbook-wrap {
       display: flex;
       gap: 24px;
-      align-items: flex-start;
+      align-items: stretch;
     }
 
     .sketchbook {
@@ -400,6 +400,21 @@
       grid-template-columns: repeat(2, 72px);
       gap: 6px;
       align-content: start;
+      align-self: flex-start;
+    }
+
+    /* ── Sketchbook illustration */
+    .sb-illustration {
+      flex: 0 0 280px;
+      overflow: hidden;
+    }
+
+    .sb-illustration img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
 
@@ -921,10 +936,10 @@
       #story, #specs, #gallery, #contact { padding: 88px 28px; }
 
       .story-header { margin-bottom: 32px; }
-      .sketchbook-wrap { flex-direction: column; }
+      .sketchbook-wrap { flex-direction: column; align-items: flex-start; }
       .sketchbook { flex: none; width: 100%; max-width: 380px; }
       .sb-thumbs { grid-template-columns: repeat(4, 72px); }
-      .sb-uses ul { min-width: unset; }
+      .sb-illustration { display: none; }
       .specs-top   { grid-template-columns: 1fr; gap: 32px; }
       .specs-grid  { grid-template-columns: repeat(2, 1fr); }
 
@@ -1126,6 +1141,11 @@
       <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
       <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
       <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
+    </div>
+
+    <!-- Illustration -->
+    <div class="sb-illustration reveal" style="transition-delay:.2s">
+      <img src="Images/boat-illustration.jpg" alt="Nº20 illustration">
     </div>
 
   </div>
