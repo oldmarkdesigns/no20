@@ -271,12 +271,17 @@
       padding: 136px 56px;
     }
 
+    .story-header {
+      max-width: 960px;
+      margin: 0 auto 48px;
+    }
+
     .story-inner {
-      max-width: 1440px;
+      max-width: 960px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 5fr 3fr;
-      gap: 56px;
+      gap: 12px;
       align-items: start;
     }
 
@@ -298,7 +303,7 @@
 
     .story-photo {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 3/4;
       background: linear-gradient(155deg, var(--beige) 0%, var(--blush) 100%);
       overflow: hidden;
     }
@@ -312,7 +317,7 @@
 
     .drawings-collage img {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 3/4;
       object-fit: cover;
       filter: grayscale(1) contrast(1.05);
       display: block;
@@ -795,7 +800,8 @@
 
       #story, #specs, #gallery, #contact { padding: 88px 28px; }
 
-      .story-inner { grid-template-columns: 1fr; gap: 44px; }
+      .story-header { margin-bottom: 32px; }
+      .story-inner  { grid-template-columns: 1fr; gap: 12px; }
       .specs-top   { grid-template-columns: 1fr; gap: 32px; }
       .specs-grid  { grid-template-columns: repeat(2, 1fr); }
 
@@ -947,13 +953,15 @@
 
 <!-- STORY -->
 <section id="story">
+  <div class="story-header reveal">
+    <span class="tag"
+          data-sv="Fartyget"
+          data-en="The Vessel">Fartyget</span>
+    <h2 data-sv="Ritad från <em>grunden.</em>"
+        data-en="Drawn from <em>scratch.</em>">Ritad från <em>grunden.</em></h2>
+  </div>
   <div class="story-inner">
     <div class="story-left reveal">
-      <span class="tag"
-            data-sv="Fartyget"
-            data-en="The Vessel">Fartyget</span>
-      <h2 data-sv="Ritad från <em>grunden.</em>"
-          data-en="Drawn from <em>scratch.</em>">Ritad från <em>grunden.</em></h2>
       <img src="Drawings/IMG_9071.jpg" alt="Handritad konstruktionsritning" class="story-photo" style="object-fit: cover; object-position: center; filter: grayscale(1) contrast(1.05);">
     </div>
     <div class="drawings-collage reveal" style="transition-delay:.1s">
