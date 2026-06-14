@@ -1052,7 +1052,38 @@
       .sketchbook-wrap { flex-direction: column; align-items: flex-start; }
       .sketchbook { flex: none; width: 100%; max-width: 100%; }
       .sb-thumbs { grid-template-columns: repeat(4, 64px); }
+
+      /* Footer — logo stays on one line, copyright wraps */
+      .f-logo { flex-shrink: 0; }
+      footer p { flex: 1; min-width: 0; text-align: right; }
+
+      /* Gallery header — stack vertically */
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .gallery-caption { padding-bottom: 0; }
+
+      /* Gallery overlay — bigger image, arrows below */
+      .overlay-main { padding: 56px 12px 8px; }
+      .overlay-nav-btn { display: none; }
+      .overlay-mobile-nav { display: flex; }
     }
+
+    .overlay-mobile-nav {
+      display: none;
+      justify-content: center;
+      gap: 48px;
+      padding: 8px 0 12px;
+      flex-shrink: 0;
+    }
+    .overlay-mobile-nav button {
+      background: none; border: none;
+      color: var(--cream);
+      font-family: 'Cormorant', serif;
+      font-size: 28px; font-weight: 300;
+      cursor: pointer; opacity: .5;
+      padding: 8px 20px;
+      transition: opacity .2s;
+    }
+    .overlay-mobile-nav button:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -1279,6 +1310,10 @@
   <div class="overlay-main">
     <img id="overlay-img" src="" alt="">
   </div>
+  <div class="overlay-mobile-nav">
+    <button onclick="galleryStep(-1)" aria-label="Föregående">←</button>
+    <button onclick="galleryStep(1)" aria-label="Nästa">→</button>
+  </div>
   <div class="overlay-strip-wrap">
     <div class="overlay-strip" id="overlay-strip"></div>
   </div>
@@ -1429,6 +1464,15 @@
   document.getElementById('gallery-overlay').addEventListener('click', e => {
     if (e.target === e.currentTarget) closeGallery();
   });
+
+  // Swipe to navigate on mobile
+  let _touchX = 0;
+  const _ov = document.getElementById('gallery-overlay');
+  _ov.addEventListener('touchstart', e => { _touchX = e.touches[0].clientX; }, { passive: true });
+  _ov.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - _touchX;
+    if (Math.abs(dx) > 50) galleryStep(dx < 0 ? 1 : -1);
+  }, { passive: true });
 
   // ── Language toggle ───────────────────────────────────
   let currentLang = 'sv';
