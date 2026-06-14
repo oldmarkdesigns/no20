@@ -632,7 +632,7 @@
 
     .spec-val {
       font-family: 'Cormorant', serif;
-      font-size: clamp(20px, 2vw, 30px);
+      font-size: clamp(28px, 3vw, 46px);
       font-weight: 300;
       line-height: 1;
       color: var(--cream);
@@ -1084,6 +1084,78 @@
       transition: opacity .2s;
     }
     .overlay-mobile-nav button:hover { opacity: 1; }
+
+    /* ── Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 2px;
+      margin-left: 12px;
+    }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--cream);
+      transition: width .3s ease, opacity .2s ease;
+    }
+    .hamburger span:nth-child(1) { width: 26px; }
+    .hamburger span:nth-child(2) { width: 20px; }
+    .hamburger span:nth-child(3) { width: 14px; }
+    .hamburger.open span:nth-child(1) { width: 26px; }
+    .hamburger.open span:nth-child(2) { width: 26px; }
+    .hamburger.open span:nth-child(3) { width: 26px; }
+
+    @media (max-width: 960px) {
+      .hamburger { display: flex; }
+    }
+
+    /* ── Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 199;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 60px;
+      transform: translateY(-100%);
+      transition: transform .45s cubic-bezier(.4, 0, .2, 1);
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+    .mobile-nav-links li {
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      overflow: hidden;
+    }
+    .mobile-nav-links a {
+      display: block;
+      font-family: 'Cormorant', serif;
+      font-size: clamp(36px, 9vw, 52px);
+      font-weight: 300;
+      color: var(--cream);
+      text-decoration: none;
+      padding: 18px 0;
+      line-height: 1.1;
+      transition: color .2s, letter-spacing .2s;
+    }
+    .mobile-nav-links a:hover { color: var(--sage); letter-spacing: .01em; }
+    .mobile-menu-lang {
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -1099,8 +1171,20 @@
       <li><a href="#contact" data-sv="Kontakt"         data-en="Contact">Kontakt</a></li>
     </ul>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true">
+  <ul class="mobile-nav-links">
+    <li><a href="#gallery" data-sv="Galleri"         data-en="Gallery"        onclick="closeMenu()">Galleri</a></li>
+    <li><a href="#specs"   data-sv="Specifikationer" data-en="Specifications" onclick="closeMenu()">Specifikationer</a></li>
+    <li><a href="#story"   data-sv="Ritningar"       data-en="Drawings"       onclick="closeMenu()">Ritningar</a></li>
+    <li><a href="#contact" data-sv="Kontakt"          data-en="Contact"        onclick="closeMenu()">Kontakt</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1327,6 +1411,20 @@
 </footer>
 
 <script>
+  // ── Hamburger menu ───────────────────────────────────
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn  = document.getElementById('hamburger');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   // ── Hero background fade-in ───────────────────────────
   (function() {
     const img = new Image();
