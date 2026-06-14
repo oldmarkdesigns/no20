@@ -1089,7 +1089,7 @@
     .hamburger {
       display: none;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: flex-end;
       gap: 6px;
       background: none;
       border: none;
@@ -1102,14 +1102,13 @@
       height: 2px;
       border-radius: 2px;
       background: var(--cream);
-      transition: width .3s ease, opacity .2s ease;
+      transition: width .3s ease, background .2s ease;
     }
-    .hamburger span:nth-child(1) { width: 26px; }
-    .hamburger span:nth-child(2) { width: 20px; }
-    .hamburger span:nth-child(3) { width: 14px; }
-    .hamburger.open span:nth-child(1) { width: 26px; }
-    .hamburger.open span:nth-child(2) { width: 26px; }
-    .hamburger.open span:nth-child(3) { width: 26px; }
+    /* mid — long — short */
+    .hamburger span:nth-child(1) { width: 18px; }
+    .hamburger span:nth-child(2) { width: 26px; }
+    .hamburger span:nth-child(3) { width: 12px; }
+    nav.scrolled .hamburger span { background: var(--dark); }
 
     @media (max-width: 960px) {
       .hamburger { display: flex; }
