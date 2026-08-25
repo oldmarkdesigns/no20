@@ -57,6 +57,20 @@
       border-color: var(--beige);
     }
 
+    /* Section-aware override — dark sections (Specifikationer, Kontakt) flip the bar back to light-on-dark */
+    nav.nav-dark {
+      background: #181817;
+      border-color: rgba(255,255,255,.12);
+    }
+    nav.scrolled.nav-dark .nav-logo,
+    nav.scrolled.nav-dark .nav-links a,
+    nav.scrolled.nav-dark .lang-btn {
+      color: var(--cream);
+    }
+    nav.scrolled.nav-dark .hamburger span { background: var(--cream); }
+    nav.scrolled.nav-dark .lang-btn { border-color: rgba(255,255,255,.28); }
+    nav.scrolled.nav-dark .lang-btn:hover { border-color: rgba(255,255,255,.75); }
+
     .nav-logo {
       font-family: 'Space Grotesk', 'DM Sans', sans-serif;
       font-size: 17px;
@@ -376,7 +390,7 @@
 
     /* ══════════════════════════════════════ SPECS */
     #specs {
-      background: var(--charcoal);
+      background: #181817;
       color: var(--cream);
       padding: 136px 56px;
       overflow: hidden;
@@ -431,7 +445,7 @@
       font-weight: 500;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--sage-mid);
+      color: var(--sage-pale);
       margin-top: -16px;
     }
 
@@ -440,16 +454,16 @@
       height: 7px;
       flex: none;
       border-radius: 50%;
-      background: var(--sage-mid);
+      background: var(--sage-pale);
       animation: proto-blink 1.6s ease-in-out infinite;
     }
 
     @keyframes proto-blink {
-      0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(139,156,141,.45); }
-      50%      { opacity: .35; box-shadow: 0 0 0 5px rgba(139,156,141,0); }
+      0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(182,197,184,.45); }
+      50%      { opacity: .35; box-shadow: 0 0 0 5px rgba(182,197,184,0); }
     }
 
-    .specs-top .tag { color: var(--sage-mid); }
+    .specs-top .tag { color: var(--sage-pale); }
 
     .specs-top .spec-model-name {
       font-family: 'Cormorant', serif;
@@ -478,7 +492,7 @@
       max-width: 420px;
     }
 
-    .spec-uses-wrap .tag { color: var(--sage-mid); display: block; margin-bottom: 16px; }
+    .spec-uses-wrap .tag { color: var(--sage-pale); display: block; margin-bottom: 16px; }
 
     .spec-uses {
       display: flex;
@@ -515,7 +529,7 @@
       font-size: 13px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--sage-mid);
+      color: var(--sage-pale);
       margin-bottom: 18px;
     }
 
@@ -610,7 +624,7 @@
       font-weight: 500;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--sage-mid);
+      color: var(--sage-pale);
       margin-bottom: 20px;
     }
 
@@ -839,9 +853,13 @@
       background: var(--dark);
       color: var(--cream);
       padding: 136px 56px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
 
     .contact-inner {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
@@ -929,6 +947,57 @@
     }
 
     .c-val a:hover { opacity: .65; }
+
+    .c-val--copyable {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      padding: 4px;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      color: rgba(255,255,255,.45);
+      transition: color .2s;
+    }
+
+    .copy-btn:hover { color: var(--cream); }
+    .copy-btn.copied { color: var(--sage-mid); }
+
+    .copy-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .copy-tooltip {
+      position: absolute;
+      bottom: calc(100% + 9px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .copy-wrap:hover .copy-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* ══════════════════════════════════════ FOOTER */
     footer {
@@ -1375,7 +1444,15 @@
     <div class="contact-details reveal" style="transition-delay:.15s">
       <div class="c-row">
         <span class="c-label" data-sv="E-post" data-en="Email">E-post</span>
-        <span class="c-val"><a href="mailto:niklas@oldmark.se">niklas@oldmark.se</a></span>
+        <span class="c-val c-val--copyable">
+          <a href="mailto:niklas@oldmark.se">niklas@oldmark.se</a>
+          <span class="copy-wrap">
+            <button class="copy-btn" type="button" aria-label="Kopiera e-postadress" onclick="copyEmail(this)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+            <span class="copy-tooltip" data-sv="Kopiera" data-en="Copy">Kopiera</span>
+          </span>
+        </span>
       </div>
       <div class="c-row">
         <span class="c-label" data-sv="Telefon" data-en="Phone">Telefon</span>
@@ -1439,9 +1516,27 @@
 
   // ── Nav scroll state ──────────────────────────────────
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
+  const navDarkSections = [document.getElementById('specs'), document.getElementById('contact')];
+
+  function updateNavState() {
     nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.82);
-  }, { passive: true });
+    const navHeight = nav.offsetHeight;
+    const onDarkSection = navDarkSections.some(section => {
+      if (!section) return false;
+      const rect = section.getBoundingClientRect();
+      return rect.top <= navHeight && rect.bottom > 0;
+    });
+    nav.classList.toggle('nav-dark', onDarkSection);
+  }
+
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      setTimeout(updateNavState, 50);
+      requestAnimationFrame(updateNavState);
+    });
+  });
+  updateNavState();
 
   // ── Scroll reveal ─────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
@@ -1534,6 +1629,36 @@
     const dx = e.changedTouches[0].clientX - _touchX;
     if (Math.abs(dx) > 50) galleryStep(dx < 0 ? 1 : -1);
   }, { passive: true });
+
+  // ── Copy email ────────────────────────────────────────
+  function copyEmail(btn) {
+    const email = 'niklas@oldmark.se';
+    const done = () => {
+      const original = btn.innerHTML;
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.classList.remove('copied');
+      }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done).catch(() => fallbackCopy(email, done));
+    } else {
+      fallbackCopy(email, done);
+    }
+  }
+
+  function fallbackCopy(text, done) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
 
   // ── Language toggle ───────────────────────────────────
   let currentLang = 'sv';
