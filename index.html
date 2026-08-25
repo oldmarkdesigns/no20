@@ -144,7 +144,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('Images/IMG_9042.png') center/cover no-repeat;
+      background: url('Images/Nr20-5.png') center/cover no-repeat;
       opacity: 0;
       transition: opacity 0.7s ease;
       z-index: 0;
@@ -158,9 +158,9 @@
       inset: 0;
       background:
         linear-gradient(to bottom,
-          rgba(18,18,17,.88) 0%,
-          rgba(18,18,17,.93) 60%,
-          rgba(18,18,17,.98) 100%);
+          rgba(18,18,17,.74) 0%,
+          rgba(18,18,17,.80) 60%,
+          rgba(18,18,17,.89) 100%);
       z-index: 1;
       pointer-events: none;
     }
@@ -182,25 +182,34 @@
       font-weight: 400;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--sage-mid);
+      color: #FFFFFF;
       margin-bottom: 20px;
       opacity: .85;
     }
 
     .hero-title {
-      font-family: 'Cormorant', serif;
+      font-family: 'Space Grotesk', 'DM Sans', sans-serif;
       font-size: clamp(108px, 21vw, 320px);
-      font-weight: 300;
+      font-weight: 600;
       line-height: .86;
-      letter-spacing: -.025em;
+      letter-spacing: .01em;
       color: var(--cream);
+      margin-left: -0.056em;
+    }
+
+    /* Brand mark — forces the Nº20/Nº30 wordmark font regardless of surrounding text style */
+    .brand-mark {
+      font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: .01em;
     }
 
     /* Ordinal indicator — Space Grotesk bold regardless of parent font */
     .logo-ord {
       display: inline-block;
       font-family: 'Space Grotesk', 'DM Sans', sans-serif;
-      font-size: .38em;
+      font-size: .44em;
       font-weight: 700;
       vertical-align: baseline;
       position: relative;
@@ -212,8 +221,8 @@
     }
 
     .hero-title em {
-      font-style: italic;
-      color: var(--sage-mid);
+      font-style: normal;
+      color: var(--cream);
     }
 
     .hero-sub {
@@ -228,7 +237,7 @@
       font-size: clamp(17px, 1.8vw, 23px);
       font-style: italic;
       font-weight: 300;
-      color: var(--dim);
+      color: #FFFFFF;
       letter-spacing: .02em;
     }
 
@@ -243,7 +252,7 @@
       font-size: 10px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--dim);
+      color: #FFFFFF;
     }
 
     .scroll-hint {
@@ -288,7 +297,7 @@
 
     /* ══════════════════════════════════════ STORY */
     #story {
-      background: var(--cream);
+      background: #F9F4EE;
       color: var(--dark);
       padding: 136px 56px;
     }
@@ -318,177 +327,26 @@
       color: var(--sage);
     }
 
-    /* ── Sketchbook */
-    .sketchbook-wrap {
+    .story-header .story-note {
+      margin-top: 18px;
+      color: var(--sage);
+    }
+
+    /* ── Drawings */
+    .drawings-grid {
       display: flex;
-      gap: 24px;
-      align-items: stretch;
+      align-items: flex-start;
+      gap: 32px;
     }
 
-    .sketchbook {
-      flex: 0 0 520px;
-      background: #F5EFE4;
-      border-radius: 3px 6px 6px 3px;
-      box-shadow: none;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .sb-binding {
-      background: #252523;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .sb-ring {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 2.5px solid #4a4a47;
-      background: var(--cream);
-      box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
-    }
-
-    .sb-page {
-      background: var(--cream);
+    .drawing-card {
+      background: #F9F4EE;
       height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
     }
 
-    .sb-page::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,.06) 0%, transparent 12%);
-      pointer-events: none;
-    }
-
-    .sb-img {
-      width: 100%;
+    .drawing-card img {
       height: 100%;
-      object-fit: contain;
-      transition: opacity .25s ease, transform .25s ease;
-    }
-
-    .sb-img.fading {
-      opacity: 0;
-      transform: scale(.97);
-    }
-
-    .sb-nav {
-      background: #F5EFE4;
-      border-top: 1px solid rgba(0,0,0,.07);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 20px;
-    }
-
-    .sb-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Cormorant', serif;
-      font-size: 28px;
-      font-weight: 300;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--dark);
-      padding: 16px 14px;
-      line-height: 1;
-      opacity: .35;
-      transition: opacity .2s;
-      z-index: 2;
-    }
-    .sb-arrow:hover { opacity: .8; }
-    .sb-arrow-left  { left: 0; }
-    .sb-arrow-right { right: 0; }
-
-    .sb-count {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    /* ── Sketchbook thumbnails */
-    .sb-thumbs {
-      display: grid;
-      grid-template-columns: repeat(2, 72px);
-      gap: 6px;
-      align-content: start;
-      align-self: flex-start;
-    }
-
-    /* ── Sketchbook illustration */
-    .sb-illustration {
-      flex: 1 1 0;
-      min-width: 0;
-      overflow: visible;
-      align-self: center;
-      transform: rotate(0.8deg);
-    }
-
-    .sb-illustration img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      /* torn paper — ragged edges on all sides */
-      clip-path: polygon(
-        /* top edge */
-        1% 2%,  7% 0%,  15% 1%, 23% 0%, 31% 1%,
-        39% 0%, 47% 1%, 55% 0%, 63% 1%, 71% 0%,
-        79% 1%, 87% 0%, 94% 1%, 99% 2%,
-        /* right edge */
-        100% 7%,  98% 15%, 100% 23%, 99% 31%,
-        100% 39%, 98% 47%, 100% 55%, 99% 63%,
-        100% 71%, 98% 79%, 100% 87%, 99% 95%,
-        /* bottom edge */
-        98% 99%, 89% 100%, 81% 99%, 73% 100%,
-        65% 99%, 57% 100%, 49% 99%, 41% 100%,
-        33% 99%, 25% 100%, 17% 99%,  9% 100%, 2% 99%,
-        /* left edge */
-        0% 94%, 2% 87%, 0% 79%, 1% 71%,
-        0% 63%, 2% 55%, 0% 47%, 1% 39%,
-        0% 31%, 2% 23%, 0% 15%, 1% 7%
-      );
-      filter: sepia(4%) brightness(1.02) contrast(0.97);
-    }
-
-
-    .sb-thumb {
-      aspect-ratio: 3/4;
-      background: #EDE8DF;
-      border: 2px solid transparent;
-      cursor: pointer;
-      overflow: hidden;
-      padding: 6px;
-      transition: border-color .2s, opacity .2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sb-thumb:hover { opacity: .75; }
-
-    .sb-thumb.active {
-      border-color: var(--dark);
-    }
-
-    .sb-thumb img {
-      width: 100%;
-      height: 100%;
+      width: auto;
       object-fit: contain;
       display: block;
     }
@@ -558,6 +416,37 @@
       flex-direction: column;
       gap: 40px;
       margin-bottom: 64px;
+    }
+
+    .proto-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sage-mid);
+      margin-top: -16px;
+    }
+
+    .proto-dot {
+      width: 7px;
+      height: 7px;
+      flex: none;
+      border-radius: 50%;
+      background: var(--sage-mid);
+      animation: proto-blink 1.6s ease-in-out infinite;
+    }
+
+    @keyframes proto-blink {
+      0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(139,156,141,.45); }
+      50%      { opacity: .35; box-shadow: 0 0 0 5px rgba(139,156,141,0); }
     }
 
     .specs-top .tag { color: var(--sage-mid); }
@@ -655,6 +544,74 @@
       font-size: 12px;
       color: var(--dim);
       letter-spacing: .02em;
+    }
+
+    .spec-drive {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .spec-drive-text {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--cream);
+      max-width: 520px;
+    }
+
+    .spec-drive-image {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .spec-drive-image img {
+      width: 160px;
+      height: auto;
+      display: block;
+      flex: none;
+    }
+
+    .spec-next {
+      margin-top: 48px;
+      padding: 36px 40px;
+      background: rgba(139,156,141,.03);
+      border: 1px solid rgba(139,156,141,.3);
+      border-radius: 14px;
+    }
+
+    .spec-next-grid {
+      max-width: 520px;
+      margin-top: 32px;
+    }
+
+    .spec-next-grid .spec-item {
+      border-top-color: rgba(139,156,141,.18);
+    }
+
+    .spec-next-grid .spec-val {
+      font-size: clamp(22px, 2.2vw, 32px);
+    }
+
+    .pill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      flex: none;
+      white-space: nowrap;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sage-mid);
+      margin-bottom: 20px;
     }
 
     /* ══════════════════════════════════════ GALLERY */
@@ -1021,9 +978,9 @@
       #story, #specs, #gallery, #contact { padding: 88px 28px; }
 
       .story-header { margin-bottom: 32px; }
-      .sketchbook { flex: 0 0 420px; }
-      .sb-thumbs { grid-template-columns: repeat(4, 72px); }
-      .sb-illustration { display: none; }
+      .drawings-grid { flex-direction: column; align-items: stretch; gap: 24px; }
+      .drawing-card { width: 100%; height: auto; }
+      .drawing-card img { width: 100%; height: auto; }
       .specs-right { display: none; }
       .specs-left  { max-width: 100%; }
       .specs-grid  { grid-template-columns: repeat(2, 1fr); }
@@ -1049,9 +1006,6 @@
       .hero-rule { display: none; }
       .hero-sub  { flex-wrap: wrap; gap: 10px; }
       .specs-grid { grid-template-columns: repeat(2, 1fr); }
-      .sketchbook-wrap { flex-direction: column; align-items: flex-start; }
-      .sketchbook { flex: none; width: 100%; max-width: 100%; }
-      .sb-thumbs { grid-template-columns: repeat(4, 64px); }
 
       /* Footer — logo stays on one line, copyright wraps */
       .f-logo { flex-shrink: 0; }
@@ -1260,32 +1214,32 @@
     </div>
     <div class="gallery-grid">
       <div class="g-item reveal" onclick="openGallery(0)">
-        <img src="Images/Nr20-1.png" alt="Nº20">
+        <img src="Images/Nr20-1.png?v=2" alt="Nº20">
       </div>
       <div class="g-item reveal" style="transition-delay:.08s" onclick="openGallery(1)">
-        <img src="Images/Nr20-2.png" alt="Nº20">
+        <img src="Images/Nr20-2.png?v=2" alt="Nº20">
       </div>
       <div class="g-item reveal" style="transition-delay:.08s" onclick="openGallery(2)">
-        <img src="Images/Nr20-4.png" alt="Nº20">
+        <img src="Images/Nr20-3.png?v=2" alt="Nº20">
       </div>
       <div class="g-item reveal" style="transition-delay:.14s" onclick="openGallery(3)">
-        <img src="Images/Nr20-5.jpeg" alt="Nº20">
+        <img src="Images/Nr20-4.png?v=2" alt="Nº20">
       </div>
       <div class="g-item reveal" style="transition-delay:.2s" onclick="openGallery(4)">
-        <img src="Images/Nr20-6.png" alt="Nº20">
+        <img src="Images/Nr20-5.png?v=2" alt="Nº20">
       </div>
       <div class="g-item reveal" style="transition-delay:.26s" onclick="openGallery(5)">
-        <img src="Images/Nr20-7.png" alt="Nº20">
+        <img src="Images/Nr20-6.png?v=2" alt="Nº20">
       </div>
       <button class="g-item-cta reveal" style="transition-delay:.32s" onclick="openGallery(0)" aria-label="Visa alla bilder">
         <div class="g-cta-inner">
-          <span class="g-cta-count">11 bilder</span>
-          <span class="g-cta-label">Visa alla<br>bilder</span>
+          <span class="g-cta-count" data-sv="12 bilder" data-en="12 photos">12 bilder</span>
+          <span class="g-cta-label" data-sv="Visa alla<br>bilder" data-en="View all<br>photos">Visa alla<br>bilder</span>
           <span class="g-cta-arrow">↗</span>
         </div>
       </button>
       <div class="g-item reveal" style="transition-delay:.38s" onclick="openGallery(6)">
-        <img src="Images/Nr20-8.png" alt="Nº20">
+        <img src="Images/Nr20-7.jpeg?v=2" alt="Nº20">
       </div>
     </div>
   </div>
@@ -1300,9 +1254,13 @@
         <span class="tag"
               data-sv="Specifikationer"
               data-en="Specifications">Specifikationer</span>
-        <p class="spec-model-name">Piccolo yacht</p>
-        <h2 data-sv="Tillverkad i glasfiber helt utan genomföringar i skrovet, tryggt &amp; underhållsfritt."
-            data-en="Built in fibreglass with no through-hull fittings — safe &amp; maintenance-free.">Tillverkad i glasfiber helt utan genomföringar i skrovet, tryggt &amp; underhållsfritt.</h2>
+        <p class="spec-model-name">Piccolo yacht <span class="brand-mark">N<span class='logo-ord'>o</span>20</span></p>
+        <h2 data-sv="Tillverkad i glasfiber helt utan genomföringar i skrovet, tryggt &amp; underhållsfritt. Vinterisolerad för att kunna ligga i året om."
+            data-en="Built in fibreglass with no through-hull fittings — safe &amp; maintenance-free. Winter-insulated for year-round mooring.">Tillverkad i glasfiber helt utan genomföringar i skrovet, tryggt &amp; underhållsfritt. Vinterisolerad för att kunna ligga i året om.</h2>
+      </div>
+      <div class="proto-chip reveal">
+        <span class="proto-dot"></span>
+        <span data-sv="Prototyp" data-en="Prototype">Prototyp</span>
       </div>
       <div class="spec-uses-wrap">
         <span class="tag" data-sv="Kan användas till" data-en="Can be used as">Kan användas till</span>
@@ -1336,6 +1294,43 @@
         <div class="spec-val">1800<span class="spec-unit">kg</span></div>
       </div>
     </div>
+    <div class="spec-drive reveal">
+      <div class="spec-tag" data-sv="Manövrering i hamn" data-en="Harbour maneuvering">Manövrering i hamn</div>
+      <p class="spec-drive-text"
+         data-sv="Båten manövereras enkelt i hamnen med dubbel eldrift via poddar monterade under badbryggan."
+         data-en="In the harbour, the boat is easily maneuvered using dual electric-drive pods mounted beneath the swim platform.">Båten manövereras enkelt i hamnen med dubbel eldrift via poddar monterade under badbryggan.</p>
+      <div class="spec-drive-image">
+        <img src="Images/IMG_8753-nobg.png" alt="Elektrisk poddrift">
+        <img src="Images/drive-pod-2-nobg.png" alt="Elektrisk poddrift, sidovy">
+      </div>
+    </div>
+    <div class="spec-next reveal">
+      <div class="pill-chip">
+        <span class="proto-dot"></span>
+        <span data-sv="Kommande modell" data-en="Upcoming model">Kommande modell</span>
+      </div>
+      <p class="spec-drive-text"
+         data-sv="Nästa modell, <span class='brand-mark'>N<span class='logo-ord'>o</span>30</span> — en något större Piccolo yacht."
+         data-en="Next model, <span class='brand-mark'>N<span class='logo-ord'>o</span>30</span> — a slightly larger Piccolo yacht.">Nästa modell, <span class="brand-mark">N<span class='logo-ord'>o</span>30</span> — en något större Piccolo yacht.</p>
+      <div class="specs-grid spec-next-grid">
+        <div class="spec-item reveal">
+          <div class="spec-tag" data-sv="Längd" data-en="Length">Längd</div>
+          <div class="spec-val">9,2<span class="spec-unit">m</span></div>
+        </div>
+        <div class="spec-item reveal" style="transition-delay:.08s">
+          <div class="spec-tag" data-sv="Bredd" data-en="Beam">Bredd</div>
+          <div class="spec-val">3,1<span class="spec-unit">m</span></div>
+        </div>
+        <div class="spec-item reveal" style="transition-delay:.16s">
+          <div class="spec-tag" data-sv="Djup" data-en="Draft">Djup</div>
+          <div class="spec-val">0,25<span class="spec-unit">m</span></div>
+        </div>
+        <div class="spec-item reveal" style="transition-delay:.24s">
+          <div class="spec-tag" data-sv="Vikt" data-en="Weight">Vikt</div>
+          <div class="spec-val" style="white-space:nowrap;">3&nbsp;200<span class="spec-unit">kg</span></div>
+        </div>
+      </div>
+    </div>
     </div><!-- /specs-left -->
     <div class="specs-right reveal">
       <img src="Images/boat-illustration-sketch-cream.png" alt="Piccolo yacht sketch">
@@ -1352,39 +1347,17 @@
           data-en="Drawings">Ritningar</span>
     <h2 data-sv="Ritad från <em>grunden.</em>"
         data-en="Drawn from <em>scratch.</em>">Ritad från <em>grunden.</em></h2>
+    <p class="hero-tagline story-note"
+       data-sv="<span class='brand-mark'>N<span class='logo-ord'>o</span>20</span> är en prototyp — den första i sitt slag, byggd för att testa varje detalj i verkligheten."
+       data-en="<span class='brand-mark'>N<span class='logo-ord'>o</span>20</span> is a prototype — the first of its kind, built to test every detail in the real world."><span class="brand-mark">N<span class='logo-ord'>o</span>20</span> är en prototyp — den första i sitt slag, byggd för att testa varje detalj i verkligheten.</p>
   </div>
-  <div class="sketchbook-wrap reveal">
-
-    <!-- Book -->
-    <div class="sketchbook">
-      <div class="sb-binding">
-        <div class="sb-ring"></div><div class="sb-ring"></div><div class="sb-ring"></div>
-        <div class="sb-ring"></div><div class="sb-ring"></div><div class="sb-ring"></div>
-        <div class="sb-ring"></div><div class="sb-ring"></div><div class="sb-ring"></div>
-        <div class="sb-ring"></div><div class="sb-ring"></div>
-      </div>
-      <div class="sb-page">
-        <button class="sb-arrow sb-arrow-left" onclick="sbStep(-1)" aria-label="Föregående">←</button>
-        <img class="sb-img" id="sb-main" src="Drawings/IMG_9065-nobg.png" alt="Ritning">
-        <button class="sb-arrow sb-arrow-right" onclick="sbStep(1)" aria-label="Nästa">→</button>
-      </div>
-      <div class="sb-nav">
-        <span class="sb-count" id="sb-count">1 / 7</span>
-      </div>
+  <div class="drawings-grid reveal">
+    <div class="drawing-card">
+      <img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1">
     </div>
-
-    <!-- Thumbnail grid -->
-    <div class="sb-thumbs" id="sb-thumbs">
-      <button class="sb-thumb active" onclick="sbGo(0)"><img src="Drawings/IMG_9065-nobg.png" alt="Ritning 1"></button>
-      <button class="sb-thumb" onclick="sbGo(1)"><img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2"></button>
-      <button class="sb-thumb" onclick="sbGo(2)"><img src="Drawings/IMG_9067-nobg.png" alt="Ritning 3"></button>
-      <button class="sb-thumb" onclick="sbGo(3)"><img src="Drawings/IMG_9068-nobg.png" alt="Ritning 4"></button>
-      <button class="sb-thumb" onclick="sbGo(4)"><img src="Drawings/IMG_9070-nobg.png" alt="Ritning 5"></button>
-      <button class="sb-thumb" onclick="sbGo(5)"><img src="Drawings/IMG_9071-nobg.png" alt="Ritning 6"></button>
-      <button class="sb-thumb" onclick="sbGo(6)"><img src="Drawings/IMG_9072-nobg.png" alt="Ritning 7"></button>
+    <div class="drawing-card">
+      <img src="Drawings/IMG_9066-nobg.png" alt="Ritning 2">
     </div>
-
-
   </div>
   </div><!-- /story-container -->
 </section>
@@ -1461,43 +1434,8 @@
   (function() {
     const img = new Image();
     img.onload = () => document.getElementById('hero').classList.add('bg-loaded');
-    img.src = 'Images/IMG_9042.png';
+    img.src = 'Images/Nr20-5.png';
   })();
-
-  // ── Sketchbook ────────────────────────────────────────
-  const sbImages = [
-    'Drawings/IMG_9065-nobg.png',
-    'Drawings/IMG_9066-nobg.png',
-    'Drawings/IMG_9067-nobg.png',
-    'Drawings/IMG_9068-nobg.png',
-    'Drawings/IMG_9070-nobg.png',
-    'Drawings/IMG_9071-nobg.png',
-    'Drawings/IMG_9072-nobg.png',
-  ];
-  let sbIdx = 0;
-
-  function sbGo(idx) {
-    idx = ((idx % sbImages.length) + sbImages.length) % sbImages.length;
-    const img    = document.getElementById('sb-main');
-    const count  = document.getElementById('sb-count');
-    const thumbs = document.querySelectorAll('#sb-thumbs .sb-thumb');
-    img.classList.add('fading');
-    setTimeout(() => {
-      sbIdx = idx;
-      img.src = sbImages[sbIdx];
-      img.classList.remove('fading');
-      count.textContent = (sbIdx + 1) + ' / ' + sbImages.length;
-      thumbs.forEach((t, i) => t.classList.toggle('active', i === sbIdx));
-    }, 250);
-  }
-
-  function sbStep(dir) { sbGo(sbIdx + dir); }
-
-  // Keyboard left / right arrows
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  sbStep(-1);
-    if (e.key === 'ArrowRight') sbStep(1);
-  });
 
   // ── Nav scroll state ──────────────────────────────────
   const nav = document.getElementById('nav');
@@ -1520,12 +1458,12 @@
   // ── Gallery lightbox ─────────────────────────────────
   const galleryImages = [
     // grid preview images (indices 0–6)
-    'Images/Nr20-1.png','Images/Nr20-2.png','Images/Nr20-4.png',
-    'Images/Nr20-5.jpeg','Images/Nr20-6.png','Images/Nr20-7.png',
-    'Images/Nr20-8.png',
+    'Images/Nr20-1.png?v=2','Images/Nr20-2.png?v=2','Images/Nr20-3.png?v=2',
+    'Images/Nr20-4.png?v=2','Images/Nr20-5.png?v=2','Images/Nr20-6.png?v=2',
+    'Images/Nr20-7.jpeg?v=2',
     // remaining images
-    'Images/Nr20-9.jpeg','Images/Nr20-10.png',
-    'Images/Nr20-11.png','Images/Nr20-12.png'
+    'Images/Nr20-8.jpeg?v=2','Images/Nr20-9.png?v=2','Images/Nr20-10.png?v=2',
+    'Images/Nr20-11.png?v=2','Images/Nr20-12.png?v=2'
   ];
   let currentGalleryIdx = 0;
   let stripBuilt = false;
