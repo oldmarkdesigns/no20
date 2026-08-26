@@ -3,12 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nº20 — Stockholm</title>
+  <title>Nº20 – Piccolo Yacht | Flytande hus i Stockholms skärgård</title>
+  <meta name="description" content="Nº20 är en Piccolo yacht – ett modernt flytande hus i Stockholms skärgård. Prototyp ritad och byggd från grunden, redo att bo, arbeta eller hyra ut på vattnet.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.no20.se/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nº20">
+  <meta property="og:title" content="Nº20 – Piccolo Yacht | Flytande hus i Stockholms skärgård">
+  <meta property="og:description" content="Nº20 är en Piccolo yacht – ett modernt flytande hus i Stockholms skärgård. Prototyp ritad och byggd från grunden, redo att bo, arbeta eller hyra ut på vattnet.">
+  <meta property="og:url" content="https://www.no20.se/">
+  <meta property="og:image" content="https://www.no20.se/Images/Nr20-1.png">
+  <meta property="og:image:width" content="1415">
+  <meta property="og:image:height" content="1111">
+  <meta property="og:image:alt" content="Nº20, en Piccolo yacht, förtöjd i Stockholms skärgård">
+  <meta property="og:locale" content="sv_SE">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nº20 – Piccolo Yacht | Flytande hus i Stockholms skärgård">
+  <meta name="twitter:description" content="Nº20 är en Piccolo yacht – ett modernt flytande hus i Stockholms skärgård. Prototyp ritad och byggd från grunden, redo att bo, arbeta eller hyra ut på vattnet.">
+  <meta name="twitter:image" content="https://www.no20.se/Images/Nr20-1.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.no20.se/#website",
+        "name": "Nº20",
+        "alternateName": "Piccolo Yacht Nº20",
+        "url": "https://www.no20.se/",
+        "inLanguage": "sv-SE",
+        "publisher": { "@id": "https://www.no20.se/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.no20.se/#organization",
+        "name": "Nº20",
+        "url": "https://www.no20.se/",
+        "email": "niklas@oldmark.se",
+        "telephone": "+46736440032",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Stockholms skärgård",
+          "addressCountry": "SE"
+        }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://www.no20.se/#product",
+        "name": "Nº20",
+        "alternateName": "Piccolo Yacht Nº20",
+        "description": "Nº20 är en Piccolo yacht – ett flytande hus i glasfiber, ritat och byggt från grunden som prototyp. Vinterisolerad och redo att användas som Airbnb, gästrum, kontor eller sommarstuga på vattnet.",
+        "brand": { "@type": "Brand", "name": "Piccolo Yacht" },
+        "manufacturer": { "@id": "https://www.no20.se/#organization" },
+        "image": [
+          "https://www.no20.se/Images/Nr20-1.png",
+          "https://www.no20.se/Images/Nr20-2.png",
+          "https://www.no20.se/Images/Nr20-5.png"
+        ],
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "Längd", "value": "6.7 m" },
+          { "@type": "PropertyValue", "name": "Bredd", "value": "2.8 m" },
+          { "@type": "PropertyValue", "name": "Djup", "value": "0.2 m" },
+          { "@type": "PropertyValue", "name": "Vikt", "value": "1800 kg" }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     :root {
       --dark:       #181817;
@@ -1248,7 +1331,7 @@
     <p class="hero-eyebrow"
        data-sv="Stockholm, Sverige &mdash; Est. 2024"
        data-en="Stockholm, Sweden &mdash; Est. 2024">Stockholm, Sverige &mdash; Est. 2024</p>
-    <h1 class="hero-title">N<span class='logo-ord'>o</span><em>20</em></h1>
+    <h1 class="hero-title">N<span class='logo-ord'>o</span><em>20</em><span class="sr-only"> — Piccolo Yacht, flytande hus i Stockholms skärgård</span></h1>
     <div class="hero-sub">
       <span class="hero-tagline"
             data-sv="Ett hem på vattnet."
@@ -1283,22 +1366,22 @@
     </div>
     <div class="gallery-grid">
       <div class="g-item reveal" onclick="openGallery(0)">
-        <img src="Images/Nr20-1.png?v=2" alt="Nº20">
+        <img src="Images/Nr20-1.png?v=2" alt="Nº20, Piccolo yacht, förtöjd vid klippor i Stockholms skärgård en solig dag">
       </div>
       <div class="g-item reveal" style="transition-delay:.08s" onclick="openGallery(1)">
-        <img src="Images/Nr20-2.png?v=2" alt="Nº20">
+        <img src="Images/Nr20-2.png?v=2" alt="Nº20, flytande hus, förtöjd vid brygga i skymningen">
       </div>
       <div class="g-item reveal" style="transition-delay:.08s" onclick="openGallery(2)">
-        <img src="Images/Nr20-3.png?v=2" alt="Nº20">
+        <img src="Images/Nr20-3.png?v=2" alt="Akterdäck på Nº20 med utsikt in i sovrummet">
       </div>
       <div class="g-item reveal" style="transition-delay:.14s" onclick="openGallery(3)">
-        <img src="Images/Nr20-4.png?v=2" alt="Nº20">
+        <img src="Images/Nr20-4.png?v=2" alt="Detalj av teakdäck ombord på Nº20">
       </div>
       <div class="g-item reveal" style="transition-delay:.2s" onclick="openGallery(4)">
-        <img src="Images/Nr20-5.png?v=2" alt="Nº20">
+        <img src="Images/Nr20-5.png?v=2" alt="Sovrum och pentry ombord på Nº20, Piccolo yacht">
       </div>
       <div class="g-item reveal" style="transition-delay:.26s" onclick="openGallery(5)">
-        <img src="Images/Nr20-6.png?v=2" alt="Nº20">
+        <img src="Images/Nr20-6.png?v=2" alt="Fönsterbord med lykta och stearinljus ombord på Nº20">
       </div>
       <button class="g-item-cta reveal" style="transition-delay:.32s" onclick="openGallery(0)" aria-label="Visa alla bilder">
         <div class="g-cta-inner">
@@ -1308,7 +1391,7 @@
         </div>
       </button>
       <div class="g-item reveal" style="transition-delay:.38s" onclick="openGallery(6)">
-        <img src="Images/Nr20-7.jpeg?v=2" alt="Nº20">
+        <img src="Images/Nr20-7.jpeg?v=2" alt="Detalj av nattduksbord ombord på Nº20">
       </div>
     </div>
   </div>
