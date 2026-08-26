@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.no20.se/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-1.jpeg</image:loc>
+      <image:caption>Nº20, Piccolo yacht, förtöjd vid klippor i Stockholms skärgård en solig dag</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-2.jpeg</image:loc>
+      <image:caption>Nº20, flytande hus, förtöjd vid brygga i skymningen</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-3.jpeg</image:loc>
+      <image:caption>Akterdäck på Nº20 med utsikt in i sovrummet</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-4.jpeg</image:loc>
+      <image:caption>Detalj av teakdäck ombord på Nº20</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-5.jpeg</image:loc>
+      <image:caption>Sovrum och pentry ombord på Nº20, Piccolo yacht</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-6.jpeg</image:loc>
+      <image:caption>Fönsterbord med lykta och stearinljus ombord på Nº20</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.no20.se/Images/Nr20-7.jpeg</image:loc>
+      <image:caption>Detalj av nattduksbord ombord på Nº20</image:caption>
+    </image:image>
   </url>
 </urlset>
